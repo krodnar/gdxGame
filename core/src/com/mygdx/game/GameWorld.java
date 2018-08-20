@@ -54,6 +54,5 @@ public class GameWorld implements IGameWorld {
     public void dispose() {
         world.dispose();
         map.dispose();
-        player.dispose();
     }
 }

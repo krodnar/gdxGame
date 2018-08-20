@@ -7,7 +7,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.Application;
-import com.mygdx.game.IGameRenderer;
+import com.mygdx.game.render.IGameRenderer;
 import com.mygdx.game.utils.BodyBuilder;
 
 public class Portal extends AbstractEntity {
@@ -22,16 +22,6 @@ public class Portal extends AbstractEntity {
 
     @Override
     public void update(float delta) {
-
-    }
-
-    @Override
-    public void render(IGameRenderer renderer, float delta) {
-
-    }
-
-    @Override
-    public void dispose() {
 
     }
 

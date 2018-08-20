@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.mygdx.game.Application;
 import com.mygdx.game.GameWorld;
 import com.mygdx.game.managers.ScreenManager;
+import com.mygdx.game.render.GameRenderer;
 
 public class GameScreen extends AbstractScreen {
 
