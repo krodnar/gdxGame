@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="32" tileheight="32" infinite="0" nextobjectid="85">
+ <tileset firstgid="1" source="rules.tsx"/>
+ <tileset firstgid="5" source="terrain_atlas.tsx"/>
+ <layer name="regions" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYYAAFjSaFEBNvUPR/lEwCoYqAAC4YAA1
+  </data>
+ </layer>
+ <layer name="input_back" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJzLYGQAg0wonQWlSQGaUD1aZOjtgOo5C6W7yDDDE6rHiwy9K6B6VkLpVWSYMQpGwVAFAICnBgk=
+  </data>
+ </layer>
+ <objectgroup name="output_world_collision">
+  <object id="71" x="0" y="0">
+   <polyline points="0,32 32,0"/>
+  </object>
+  <object id="72" x="64" y="0">
+   <polyline points="0,0 32,0"/>
+  </object>
+  <object id="73" x="128" y="0">
+   <polyline points="0,0 32,32"/>
+  </object>
+  <object id="80" x="0" y="64">
+   <polyline points="0,32 0,0"/>
+  </object>
+  <object id="81" x="0" y="128">
+   <polyline points="32,32 0,0"/>
+  </object>
+  <object id="82" x="64" y="128">
+   <polyline points="32,32 0,32"/>
+  </object>
+  <object id="83" x="128" y="128">
+   <polyline points="32,0 0,32"/>
+  </object>
+  <object id="84" x="128" y="64">
+   <polyline points="32,0 32,32"/>
+  </object>
+ </objectgroup>
+</map>
