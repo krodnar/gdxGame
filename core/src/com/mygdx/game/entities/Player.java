@@ -10,33 +10,34 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.Application;
 import com.mygdx.game.utils.BodyBuilder;
+import com.mygdx.game.utils.Direction;
 
-import static com.mygdx.game.entities.Player.Direction.*;
 import static com.mygdx.game.utils.Constants.PPM;
+import static com.mygdx.game.utils.Direction.DOWN;
+import static com.mygdx.game.utils.Direction.DOWN_LEFT;
+import static com.mygdx.game.utils.Direction.DOWN_RIGHT;
+import static com.mygdx.game.utils.Direction.LEFT;
+import static com.mygdx.game.utils.Direction.RIGHT;
+import static com.mygdx.game.utils.Direction.UNDEFINED;
+import static com.mygdx.game.utils.Direction.UP;
+import static com.mygdx.game.utils.Direction.UP_LEFT;
+import static com.mygdx.game.utils.Direction.UP_RIGHT;
 
 public class Player extends AbstractEntity {
 
     private Body body;
-    private float angle;
-    private Direction direction;
+
+    private Direction direction = DOWN;
+    private Vector2 speed = new Vector2();
+    private float maxSpeed = 5;
+    private float angle = 0;
+    private boolean inMove = false;
 
     private Direction[][] dirMatrix = new Direction[][]{
             {UP_LEFT, UP, UP_RIGHT},
             {LEFT, UNDEFINED, RIGHT},
             {DOWN_LEFT, DOWN, DOWN_RIGHT}
     };
-
-    public enum Direction {
-        UP,
-        UP_RIGHT,
-        RIGHT,
-        DOWN_RIGHT,
-        DOWN,
-        DOWN_LEFT,
-        LEFT,
-        UP_LEFT,
-        UNDEFINED
-    }
 
     public Player(Application application, World world) {
         super(application, world);
@@ -47,7 +48,7 @@ public class Player extends AbstractEntity {
     public void update(float delta) {
         angleUpdate(delta);
         directionUpdate(delta);
-        positionUpdate(delta);
+        speedUpdate(delta);
     }
 
     private void createBody() {
@@ -92,48 +93,23 @@ public class Player extends AbstractEntity {
             j += 1;
         }
 
+        if (i == 1 && j == 1) {
+            inMove = false;
+            return;
+        }
+
+        inMove = true;
         direction = dirMatrix[j][i];
     }
 
-    private void positionUpdate(float delta) {
-        int verticalForce = 0;
-        int horizontalForce = 0;
-
-        switch (direction) {
-
-            case UP:
-                verticalForce += 1;
-                break;
-            case UP_RIGHT:
-                horizontalForce += 1;
-                verticalForce += 1;
-                break;
-            case RIGHT:
-                horizontalForce += 1;
-                break;
-            case DOWN_RIGHT:
-                verticalForce -= 1;
-                horizontalForce += 1;
-                break;
-            case DOWN:
-                verticalForce -= 1;
-                break;
-            case DOWN_LEFT:
-                horizontalForce -= 1;
-                verticalForce -= 1;
-                break;
-            case LEFT:
-                horizontalForce -= 1;
-                break;
-            case UP_LEFT:
-                horizontalForce -= 1;
-                verticalForce += 1;
-                break;
-            case UNDEFINED:
-                break;
+    private void speedUpdate(float delta) {
+        if (!isMoving()) {
+            body.setLinearVelocity(0, 0);
+            return;
         }
 
-        body.setLinearVelocity(horizontalForce * 5, verticalForce * 5);
+        speed.set(direction.getVector());
+        body.setLinearVelocity(speed.nor().scl(maxSpeed));
     }
 
     //region Get/Set
@@ -151,6 +127,10 @@ public class Player extends AbstractEntity {
 
     public Direction getDirection() {
         return direction;
+    }
+
+    public boolean isMoving() {
+        return inMove;
     }
     //endregion
 }

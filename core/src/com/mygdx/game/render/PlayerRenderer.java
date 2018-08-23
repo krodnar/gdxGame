@@ -11,10 +11,11 @@ import static com.mygdx.game.utils.Constants.PPM;
 
 public class PlayerRenderer implements EntityRenderer<Player> {
 
-    private float frameDuration = 0.03f;
+    private float frameDuration = 0.05f;
     private float stateTime = 0;
     private Application app;
-    private TextureAtlas atlas;
+    private TextureAtlas runningAtlas;
+    private TextureAtlas standingAtlas;
 
     private Animation<TextureRegion> runningUp;
     private Animation<TextureRegion> runningUpLeft;
@@ -24,44 +25,84 @@ public class PlayerRenderer implements EntityRenderer<Player> {
     private Animation<TextureRegion> runningDownRight;
     private Animation<TextureRegion> runningRight;
     private Animation<TextureRegion> runningUpRight;
+
+    private TextureRegion standingUp;
+    private TextureRegion standingUpLeft;
+    private TextureRegion standingLeft;
+    private TextureRegion standingDownLeft;
+    private TextureRegion standingDown;
+    private TextureRegion standingDownRight;
+    private TextureRegion standingRight;
+    private TextureRegion standingUpRight;
+
     private Animation<TextureRegion> currentAnimation;
+    private TextureRegion currentFrame;
 
     public PlayerRenderer(Application app) {
         this.app = app;
 
-        atlas = app.assets.get(R.character.running_atlas);
+        runningAtlas = app.assets.get(R.character.running_atlas);
+        standingAtlas = app.assets.get(R.character.standing_atlas);
 
-        runningUp = getAnimation(atlas, "up");
-        runningUpLeft = getAnimation(atlas, "up left");
-        runningLeft = getAnimation(atlas, "left");
-        runningDownLeft = getAnimation(atlas, "down left");
-        runningDown = getAnimation(atlas, "down");
-        runningDownRight = getAnimation(atlas, "down right");
-        runningRight = getAnimation(atlas, "right");
-        runningUpRight = getAnimation(atlas, "up right");
-
-        currentAnimation = runningUpLeft;
+        initAnimations();
     }
 
     @Override
     public void render(Player player, IGameRenderer renderer, float delta) {
         stateTime += delta;
 
-        animationUpdate(player, delta);
-
         float x = player.getPosition().x * PPM;
         float y = player.getPosition().y * PPM;
 
-        TextureRegion frame = currentAnimation.getKeyFrame(stateTime, false);
-        app.batch.draw(frame, x - 12, y - 16);
+        currentFrame = getCurrentFrame(player, stateTime);
+        float width = currentFrame.getRegionWidth();
+        float height = currentFrame.getRegionHeight();
+
+        app.batch.draw(currentFrame, x - width / 2, y - height / 2);
+    }
+
+    private TextureRegion getCurrentFrame(Player player, float stateTime) {
+        if (player.isMoving()) {
+            animationUpdate(player);
+            return currentAnimation.getKeyFrame(stateTime, false);
+        } else {
+            return getStandingFrame(player);
+        }
     }
 
     @Override
     public void dispose() {
-        atlas.dispose();
+        runningAtlas.dispose();
+        standingAtlas.dispose();
     }
 
-    private void animationUpdate(Player player, float delta) {
+    private TextureRegion getStandingFrame(Player player) {
+        switch (player.getDirection()) {
+
+            case UP:
+                return standingUp;
+            case UP_RIGHT:
+                return standingUpRight;
+            case RIGHT:
+                return standingRight;
+            case DOWN_RIGHT:
+                return standingDownRight;
+            case DOWN:
+                return standingDown;
+            case DOWN_LEFT:
+                return standingDownLeft;
+            case LEFT:
+                return standingLeft;
+            case UP_LEFT:
+                return standingUpLeft;
+            case UNDEFINED:
+                return standingDown;
+            default:
+                return standingDown;
+        }
+    }
+
+    private void animationUpdate(Player player) {
         switch (player.getDirection()) {
 
             case UP:
@@ -95,5 +136,39 @@ public class PlayerRenderer implements EntityRenderer<Player> {
 
     private Animation<TextureRegion> getAnimation(TextureAtlas atlas, String regionNaming) {
         return new Animation<TextureRegion>(frameDuration, atlas.findRegions(regionNaming), Animation.PlayMode.LOOP);
+    }
+
+    private TextureRegion getTexture(TextureAtlas standingAtlas, String regionNaming) {
+        return standingAtlas.findRegion(regionNaming);
+    }
+
+    private void initAnimations() {
+        runningUp = getAnimation(runningAtlas, "up");
+        runningUpLeft = getAnimation(runningAtlas, "up left");
+        runningLeft = getAnimation(runningAtlas, "left");
+        runningDownLeft = getAnimation(runningAtlas, "down left");
+        runningDown = getAnimation(runningAtlas, "down");
+        runningDownRight = getAnimation(runningAtlas, "down right");
+        runningRight = getAnimation(runningAtlas, "right");
+        runningUpRight = getAnimation(runningAtlas, "up right");
+
+        standingUp = getTexture(standingAtlas, "up");
+        standingUpLeft = getTexture(standingAtlas, "up left");
+        standingLeft = getTexture(standingAtlas, "left");
+        standingDownLeft = getTexture(standingAtlas, "down left");
+        standingDown = getTexture(standingAtlas, "down");
+        standingDownRight = getTexture(standingAtlas, "down right");
+        standingRight = getTexture(standingAtlas, "right");
+        standingUpRight = getTexture(standingAtlas, "up right");
+
+        currentAnimation = runningUpLeft;
+    }
+
+    public float getFrameDuration() {
+        return frameDuration;
+    }
+
+    public void setFrameDuration(float frameDuration) {
+        this.frameDuration = frameDuration;
     }
 }
