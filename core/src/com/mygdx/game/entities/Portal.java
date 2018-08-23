@@ -13,7 +13,7 @@ import com.mygdx.game.utils.BodyBuilder;
 public class Portal extends AbstractEntity {
 
     private Body body;
-    private Vector2 portDestination = new Vector2();
+    private Vector2 portDestination = null;
 
     public Portal(Application app, World world, Shape shape) {
         super(app, world);
@@ -45,6 +45,10 @@ public class Portal extends AbstractEntity {
     }
 
     public void portPlayer(final Player player) {
+        if (portDestination == null) {
+            return;
+        }
+
         Gdx.app.postRunnable(new Runnable() {
             @Override
             public void run() {

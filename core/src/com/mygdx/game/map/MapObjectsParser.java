@@ -31,7 +31,7 @@ public class MapObjectsParser {
                 parsePlayerPosition(object, world.getPlayer());
             } else if (type.equals("portal")) {
                 parsePortal(app, world.getWorld(), object);
-            } else if (type.equals("destination")) {
+            } else if (type.equals("portDestination")) {
                 parseDestination(object);
             }
         }
@@ -60,7 +60,7 @@ public class MapObjectsParser {
         Shape shape = MapObjectsCollisionParser.getObjectCollision(object);
         Portal portal = new Portal(app, world, shape);
 
-        String destination = object.getProperties().get("destination", String.class);
+        String destination = object.getProperties().get("portDestination", String.class);
         portalDestinations.put(destination, portal);
     }
 
