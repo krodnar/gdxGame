@@ -8,7 +8,9 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.mygdx.game.Application;
 import com.mygdx.game.IGameWorld;
 import com.mygdx.game.entities.Player;
-import com.mygdx.game.map.TiledMapRenderer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.mygdx.game.utils.Constants.PPM;
 
@@ -28,9 +30,16 @@ public class GameRenderer implements IGameRenderer {
         this.world = world;
         this.app = app;
 
+        playerRenderer = new PlayerRenderer(app, world.getPlayer());
+
+        List<TiledEntityRenderer> renderers = new ArrayList<TiledEntityRenderer>();
+        renderers.add(playerRenderer);
+
+        TiledRenderersController renderersManager = new TiledRenderersController(this, renderers);
         mapRenderer = new TiledMapRenderer(world.getMap(), app.batch);
+        mapRenderer.setRenderersManager(renderersManager);
+
         debugRenderer = new Box2DDebugRenderer();
-        playerRenderer = new PlayerRenderer(app);
 
         app.camera.setToOrtho(false, Application.V_WIDTH, Application.V_HEIGHT);
         app.batch.setProjectionMatrix(app.camera.combined);
@@ -52,11 +61,7 @@ public class GameRenderer implements IGameRenderer {
         app.batch.setProjectionMatrix(app.camera.combined);
 
         mapRenderer.renderBackground();
-
-        app.batch.begin();
-        playerRenderer.render(world.getPlayer(), this, delta);
-        app.batch.end();
-
+        mapRenderer.renderMiddleground();
         mapRenderer.renderForeground();
 
         if (debug) {
