@@ -56,7 +56,7 @@ public class Player extends AbstractEntity {
                 .setBodyType(BodyDef.BodyType.DynamicBody)
                 .setPosition(0, 0)
                 .setFixedRotation(true)
-                .setBoxShape(8f, 16f);
+                .setBoxShape(8f, 2f);
 
         body = builder.build();
         body.setUserData(this);
