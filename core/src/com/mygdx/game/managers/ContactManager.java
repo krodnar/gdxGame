@@ -2,41 +2,44 @@ package com.mygdx.game.managers;
 
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.mygdx.game.contacts.ContactResolver;
-import com.mygdx.game.utils.DoubleKeyMap;
 import com.mygdx.game.contacts.PlayerObjectsContactResolver;
 import com.mygdx.game.contacts.PlayerPortalContactResolver;
 import com.mygdx.game.entities.Player;
 import com.mygdx.game.entities.Portal;
 import com.mygdx.game.entities.WorldObject;
 
+import java.util.HashMap;
+
 public class ContactManager {
 
-    private DoubleKeyMap<Class, ContactResolver> resolvers;
+    private HashMap<Integer, ContactResolver> resolvers;
 
     public ContactManager() {
-        this.resolvers = new DoubleKeyMap<Class, ContactResolver>();
+        this.resolvers = new HashMap<Integer, ContactResolver>();
 
         initResolvers();
     }
 
     public ContactResolver getResolver(Contact contact) {
 
-        Object ea = contact.getFixtureA().getBody().getUserData();
-        Object eb = contact.getFixtureB().getBody().getUserData();
+        Object o1 = contact.getFixtureA().getBody().getUserData();
+        Object o2 = contact.getFixtureB().getBody().getUserData();
 
-        if (ea == null || eb == null) {
+        if (o1 == null || o2 == null) {
             return null;
         }
 
-        return getResolver(ea, eb);
+        return getResolver(o1, o2);
     }
 
     public void addResolver(ContactResolver resolver, Class objectAClass, Class objectBClass) {
-        resolvers.put(objectAClass, objectBClass, resolver);
+        int hash = objectAClass.hashCode() + objectBClass.hashCode();
+        resolvers.put(hash, resolver);
     }
 
     private ContactResolver getResolver(Object o1, Object o2) {
-        return resolvers.get(o1.getClass(), o2.getClass());
+        int hash = o1.getClass().hashCode() + o2.getClass().hashCode();
+        return resolvers.get(hash);
     }
 
     private void initResolvers() {
