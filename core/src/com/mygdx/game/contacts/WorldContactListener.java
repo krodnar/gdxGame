@@ -10,6 +10,10 @@ public class WorldContactListener implements ContactListener {
 
     private ContactManager contactManager;
 
+    public WorldContactListener() {
+        contactManager = new ContactManager();
+    }
+
     public WorldContactListener(ContactManager contactManager) {
         this.contactManager = contactManager;
     }
@@ -19,13 +23,17 @@ public class WorldContactListener implements ContactListener {
         ContactResolver resolver = contactManager.getResolver(contact);
 
         if (resolver != null) {
-            resolver.resolveContact(contact);
+            resolver.resolveBeginContact(contact);
         }
     }
 
     @Override
     public void endContact(Contact contact) {
+        ContactResolver resolver = contactManager.getResolver(contact);
 
+        if (resolver != null) {
+            resolver.resolveEndContact(contact);
+        }
     }
 
     @Override
@@ -36,5 +44,13 @@ public class WorldContactListener implements ContactListener {
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
 
+    }
+
+    public ContactManager getContactManager() {
+        return contactManager;
+    }
+
+    public void setContactManager(ContactManager contactManager) {
+        this.contactManager = contactManager;
     }
 }

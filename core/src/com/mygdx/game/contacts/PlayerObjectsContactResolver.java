@@ -7,10 +7,15 @@ import com.mygdx.game.entities.WorldObject;
 public class PlayerObjectsContactResolver extends AbstractContactResolver<Player, WorldObject> {
 
     @Override
-    public void resolveContact(Player player, WorldObject worldObject) {
+    public void resolveBeginContact(Player player, WorldObject worldObject) {
         if (worldObject.getType() == WorldObject.Type.COLLISION) {
             System.out.println("Player hit a collision object");
         }
+    }
+
+    @Override
+    public void resolveEndContact(Player player, WorldObject worldObject) {
+
     }
 
     @Override

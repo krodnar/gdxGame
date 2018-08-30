@@ -8,8 +8,13 @@ import com.mygdx.game.entities.Portal;
 public class PlayerPortalContactResolver extends AbstractContactResolver<Player, Portal> {
 
     @Override
-    public void resolveContact(Player player, Portal portal) {
+    public void resolveBeginContact(Player player, Portal portal) {
         portal.portPlayer(player);
+    }
+
+    @Override
+    public void resolveEndContact(Player player, Portal portal) {
+
     }
 
     @Override

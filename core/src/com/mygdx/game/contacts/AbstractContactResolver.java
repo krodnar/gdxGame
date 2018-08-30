@@ -9,18 +9,32 @@ public abstract class AbstractContactResolver<V, S> implements ContactResolver<V
     private Fixture fixtureB;
 
     @Override
-    public void resolveContact(Contact contact) {
+    public void resolveBeginContact(Contact contact) {
+        determineFixtures(contact);
+
+        V v = getObjectA(getFixtureA());
+        S s = getObjectB(getFixtureB());
+
+        resolveBeginContact(v, s);
+    }
+
+    @Override
+    public void resolveEndContact(Contact contact) {
+        determineFixtures(contact);
+
+        V v = getObjectA(getFixtureA());
+        S s = getObjectB(getFixtureB());
+
+        resolveEndContact(v, s);
+    }
+
+    protected void determineFixtures(Contact contact) {
         setFixtureA(contact.getFixtureA());
         setFixtureB(contact.getFixtureB());
 
         if (!isObjectA(getFixtureA())) {
             swapFixtures();
         }
-
-        V v = getObjectA(getFixtureA());
-        S s = getObjectB(getFixtureB());
-
-        resolveContact(v, s);
     }
 
     protected abstract boolean isObjectA(Fixture fixture);
