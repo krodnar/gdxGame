@@ -7,8 +7,8 @@ import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.Application;
 import com.mygdx.game.IGameWorld;
+import com.mygdx.game.entities.InvisiblePortal;
 import com.mygdx.game.entities.Player;
-import com.mygdx.game.entities.Portal;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,11 +18,11 @@ import static com.mygdx.game.utils.Constants.PPM;
 public class MapObjectsParser {
 
     private static Map<String, Vector2> destinations;
-    private static Map<String, Portal> portalDestinations;
+    private static Map<String, InvisiblePortal> portalDestinations;
 
     public static void parse(Application app, IGameWorld world, MapObjects objects) {
         destinations = new HashMap<String, Vector2>();
-        portalDestinations = new HashMap<String, Portal>();
+        portalDestinations = new HashMap<String, InvisiblePortal>();
 
         for (MapObject object : objects) {
             String type = object.getProperties().get("type", String.class);
@@ -42,10 +42,10 @@ public class MapObjectsParser {
     private static void postProcess() {
         for (String destination : portalDestinations.keySet()) {
             Vector2 position = destinations.get(destination);
-            Portal portal = portalDestinations.get(destination);
+            InvisiblePortal invisiblePortal = portalDestinations.get(destination);
 
-            if (position != null && portal != null) {
-                portal.setPortDestination(position.scl(1 / PPM));
+            if (position != null && invisiblePortal != null) {
+                invisiblePortal.setPortDestination(position.scl(1 / PPM));
             }
         }
     }
@@ -58,10 +58,10 @@ public class MapObjectsParser {
 
     private static void parsePortal(Application app, World world, MapObject object) {
         Shape shape = MapObjectsCollisionParser.getObjectCollision(object);
-        Portal portal = new Portal(app, world, shape);
+        InvisiblePortal invisiblePortal = new InvisiblePortal(app, world, shape);
 
         String destination = object.getProperties().get("portDestination", String.class);
-        portalDestinations.put(destination, portal);
+        portalDestinations.put(destination, invisiblePortal);
     }
 
     private static void parsePlayerPosition(MapObject object, Player player) {

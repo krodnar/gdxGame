@@ -62,7 +62,7 @@ public class PlayerRenderer implements EntityRenderer<Player> {
     }
 
     private TextureRegion getCurrentFrame(Player player, float stateTime) {
-        if (player.isMoving()) {
+        if (player.getState() == Player.MOVING) {
             animationUpdate(player);
             return currentAnimation.getKeyFrame(stateTime, false);
         } else {

@@ -34,7 +34,6 @@ public enum EntityType {
         return subtype;
     }
 
-
     @Override
     public String toString() {
         return type + (subtype == null ? "" : ": " + subtype);
