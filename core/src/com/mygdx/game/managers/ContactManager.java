@@ -2,10 +2,10 @@ package com.mygdx.game.managers;
 
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.mygdx.game.contacts.ContactResolver;
+import com.mygdx.game.entities.InvisiblePortal;
 import com.mygdx.game.contacts.PlayerObjectsContactResolver;
 import com.mygdx.game.contacts.PlayerPortalContactResolver;
 import com.mygdx.game.entities.Player;
-import com.mygdx.game.entities.Portal;
 import com.mygdx.game.entities.WorldObject;
 
 import java.util.HashMap;
@@ -22,14 +22,14 @@ public class ContactManager {
 
     public ContactResolver getResolver(Contact contact) {
 
-        Object o1 = contact.getFixtureA().getBody().getUserData();
-        Object o2 = contact.getFixtureB().getBody().getUserData();
+        Object ea = contact.getFixtureA().getBody().getUserData();
+        Object eb = contact.getFixtureB().getBody().getUserData();
 
-        if (o1 == null || o2 == null) {
+        if (ea == null || eb == null) {
             return null;
         }
 
-        return getResolver(o1, o2);
+        return getResolver(ea, eb);
     }
 
     public void addResolver(ContactResolver resolver, Class objectAClass, Class objectBClass) {
@@ -43,7 +43,7 @@ public class ContactManager {
     }
 
     private void initResolvers() {
-        addResolver(new PlayerPortalContactResolver(), Player.class, Portal.class);
+        addResolver(new PlayerPortalContactResolver(), Player.class, InvisiblePortal.class);
         addResolver(new PlayerObjectsContactResolver(), Player.class, WorldObject.class);
     }
 }

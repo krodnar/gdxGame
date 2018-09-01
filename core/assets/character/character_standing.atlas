@@ -1,62 +1,62 @@
 
 character_standing.png
-size: 512,64
+size: 256,64
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 down
   rotate: false
-  xy: 194, 2
-  size: 30, 48
-  orig: 30, 48
+  xy: 146, 2
+  size: 22, 32
+  orig: 22, 32
   offset: 0, 0
   index: -1
 down left
   rotate: false
   xy: 2, 2
-  size: 30, 48
-  orig: 30, 48
+  size: 22, 32
+  orig: 22, 32
   offset: 0, 0
   index: -1
 down right
   rotate: false
-  xy: 162, 2
-  size: 30, 48
-  orig: 30, 48
+  xy: 122, 2
+  size: 22, 32
+  orig: 22, 32
   offset: 0, 0
   index: -1
 left
   rotate: false
-  xy: 34, 2
-  size: 30, 48
-  orig: 30, 48
+  xy: 26, 2
+  size: 22, 32
+  orig: 22, 32
   offset: 0, 0
   index: -1
 right
   rotate: false
-  xy: 130, 2
-  size: 30, 48
-  orig: 30, 48
+  xy: 98, 2
+  size: 22, 32
+  orig: 22, 32
   offset: 0, 0
   index: -1
 up
   rotate: false
-  xy: 98, 2
-  size: 30, 48
-  orig: 30, 48
+  xy: 74, 2
+  size: 22, 32
+  orig: 22, 32
   offset: 0, 0
   index: -1
 up left
   rotate: false
-  xy: 226, 2
-  size: 30, 48
-  orig: 30, 48
+  xy: 170, 2
+  size: 22, 32
+  orig: 22, 32
   offset: 0, 0
   index: -1
 up right
   rotate: false
-  xy: 66, 2
-  size: 30, 48
-  orig: 30, 48
+  xy: 50, 2
+  size: 22, 32
+  orig: 22, 32
   offset: 0, 0
   index: -1

@@ -10,14 +10,13 @@ import com.mygdx.game.Application;
 import com.mygdx.game.render.IGameRenderer;
 import com.mygdx.game.utils.BodyBuilder;
 
-public class Portal extends AbstractEntity {
+public class InvisiblePortal extends B2DEntity {
 
-    private Body body;
-    private Vector2 portDestination = new Vector2();
+    private Vector2 portDestination = null;
 
-    public Portal(Application app, World world, Shape shape) {
-        super(app, world);
-        createBody(shape);
+    public InvisiblePortal(Application app, World world, Shape shape) {
+        super(app, world, shape);
+        initialize(EntityType.PORTAL);
     }
 
     @Override
@@ -33,7 +32,8 @@ public class Portal extends AbstractEntity {
         return portDestination;
     }
 
-    private void createBody(Shape shape) {
+    @Override
+    public void createBodies(Shape shape) {
         BodyBuilder builder = new BodyBuilder(world);
         builder
                 .setBodyType(BodyDef.BodyType.StaticBody)
@@ -45,6 +45,10 @@ public class Portal extends AbstractEntity {
     }
 
     public void portPlayer(final Player player) {
+        if (portDestination == null) {
+            return;
+        }
+
         Gdx.app.postRunnable(new Runnable() {
             @Override
             public void run() {

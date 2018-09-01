@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="32" infinite="0" nextobjectid="85899">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="32" infinite="0" nextobjectid="85908">
  <properties>
   <property name="middleLayer" type="int" value="5"/>
  </properties>
@@ -31,7 +31,7 @@
    eJzt0aENACAUQ0HM338EVmETGAVNgsSQ3rkmda81AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgZ6PO3ev+I8PSP5r+2fTPNvUHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4JENQn0E/Q==
   </data>
   </layer>
-  <layer name="trees back" width="128" height="128">
+  <layer name="trees_back" width="128" height="128">
    <data encoding="base64" compression="zlib">
    eJzt1UkKgDAQBEDxl37F9R+uX3WOAeNRkKQK+pDJsWGmaQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4q659zqaYzZEl80c53no+4n1GLv0XLe25jwyRUedVWqP3LbIn/eduA3WwD+qW2wcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPCFG7unDhM=
   </data>
@@ -55,24 +55,27 @@
   </layer>
  </group>
  <objectgroup name="collision">
-  <object id="85884" x="1568" y="2432" width="32" height="32"/>
-  <object id="85885" x="1664" y="2464" width="32" height="32"/>
-  <object id="85886" x="1760" y="2400" width="32" height="32"/>
-  <object id="85887" x="1792" y="2528" width="32" height="32"/>
   <object id="85888" x="1440" y="2128" width="128" height="16"/>
   <object id="85890" x="1600" y="2129" width="96" height="15"/>
   <object id="85891" x="1680" y="2129" width="16" height="143"/>
   <object id="85892" x="1504" y="2260" width="192" height="12"/>
   <object id="85893" x="1440" y="2128" width="16" height="144"/>
+  <object id="85903" x="1665.25" y="2489.25">
+   <polygon points="0,0 11.75,7.5 29,1 23.75,-25 5.75,-24.75"/>
+  </object>
+  <object id="85904" x="1793.25" y="2553.25">
+   <polygon points="0,0 11.75,7.5 29,1 23.75,-25 5.75,-24.75"/>
+  </object>
+  <object id="85905" x="1761" y="2425.25">
+   <polygon points="0,0 11.75,7.5 29,1 23.75,-25 5.75,-24.75"/>
+  </object>
+  <object id="85906" x="1569" y="2457.25">
+   <polygon points="0,0 11.75,7.5 29,1 23.75,-25 5.75,-24.75"/>
+  </object>
  </objectgroup>
  <objectgroup name="objects">
   <object id="85875" name="startPosition" type="playerPosition" x="1672" y="1785.33">
    <point/>
-  </object>
-  <object id="85878" type="portal" x="1984" y="2368" width="32" height="32">
-   <properties>
-    <property name="portDestination" value="top"/>
-   </properties>
   </object>
   <object id="85879" name="bottom" type="portDestination" x="2065" y="2387">
    <point/>
@@ -85,6 +88,12 @@
     <property name="portDestination" value="bottom"/>
    </properties>
    <polygon points="0,0 -15,12 -30.3333,4.33333 -24.3333,-15.3333 -1.66667,-15.6667"/>
+  </object>
+  <object id="85907" type="portal" x="1989.33" y="2384.67">
+   <properties>
+    <property name="portDestination" value="top"/>
+   </properties>
+   <polygon points="0,0 3.33333,-12.6667 19.3333,-10 21.3333,5.66667 3.33333,11.6667"/>
   </object>
  </objectgroup>
  <objectgroup name="world_collision">

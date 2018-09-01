@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="8" height="8" tilewidth="32" tileheight="32" infinite="0" nextobjectid="3">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="8" height="8" tilewidth="32" tileheight="32" infinite="0" nextobjectid="9">
  <tileset firstgid="1" source="base_out_atlas.tsx"/>
  <tileset firstgid="1025" source="rules.tsx"/>
  <tileset firstgid="1029" source="terrain_atlas.tsx"/>
  <layer name="regions" width="8" height="8">
   <data encoding="base64" compression="zlib">
-   eJxjZGEAA0YcNLEAXT25+sm1n1wAACFcAC4=
+   eJxjZGEAA0YoPdIAAArQAAs=
   </data>
  </layer>
- <layer name="input_back" width="8" height="8">
+ <layer name="input_trees_back" width="8" height="8">
   <data encoding="base64" compression="zlib">
-   eJw7y8oABhlQOhNKZ0FpYkEHmvouEvWvgKpfCaVXkaifXAAAr9AFQw==
+   eJyrZ2MAgyYoPdIAAAnDAQ4=
   </data>
  </layer>
- <layer name="output_back" width="8" height="8">
-  <data encoding="base64" compression="zlib">
-   eJw7y8oABhlQOhNKZ0FpYkEHmvouEvWvgKpfCaVXkaifXAAAr9AFQw==
-  </data>
- </layer>
- <layer name="output_collision" width="8" height="8">
-  <data encoding="base64" compression="zlib">
-   eJxjZGEAA0YcNLFgoPWTCwAkyAAz
-  </data>
- </layer>
+ <objectgroup name="output_collision">
+  <object id="7" x="1.25" y="25.25">
+   <polygon points="0,0 11.75,7.5 29,1 23.75,-25 5.75,-24.75"/>
+  </object>
+  <object id="8" x="65" y="25.25">
+   <polygon points="0,0 11.75,7.5 29,1 23.75,-25 5.75,-24.75"/>
+  </object>
+ </objectgroup>
 </map>

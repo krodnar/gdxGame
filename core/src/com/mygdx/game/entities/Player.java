@@ -5,20 +5,29 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.Application;
 import com.mygdx.game.utils.BodyBuilder;
+import com.mygdx.game.utils.Direction;
 
-import static com.mygdx.game.entities.Player.Direction.*;
 import static com.mygdx.game.utils.Constants.PPM;
+import static com.mygdx.game.utils.Direction.DOWN;
+import static com.mygdx.game.utils.Direction.DOWN_LEFT;
+import static com.mygdx.game.utils.Direction.DOWN_RIGHT;
+import static com.mygdx.game.utils.Direction.LEFT;
+import static com.mygdx.game.utils.Direction.RIGHT;
+import static com.mygdx.game.utils.Direction.UNDEFINED;
+import static com.mygdx.game.utils.Direction.UP;
+import static com.mygdx.game.utils.Direction.UP_LEFT;
+import static com.mygdx.game.utils.Direction.UP_RIGHT;
 
-public class Player extends AbstractEntity {
+public class Player extends ActiveEntity {
 
-    private Body body;
-    private float angle;
-    private Direction direction;
+    public static final int STOPPED = 0;
+    public static final int MOVING = 1;
+
+    private float angle = 0;
 
     private Direction[][] dirMatrix = new Direction[][]{
             {UP_LEFT, UP, UP_RIGHT},
@@ -26,31 +35,19 @@ public class Player extends AbstractEntity {
             {DOWN_LEFT, DOWN, DOWN_RIGHT}
     };
 
-    public enum Direction {
-        UP,
-        UP_RIGHT,
-        RIGHT,
-        DOWN_RIGHT,
-        DOWN,
-        DOWN_LEFT,
-        LEFT,
-        UP_LEFT,
-        UNDEFINED
-    }
-
     public Player(Application application, World world) {
         super(application, world);
-        createBody();
+        initialize(EntityType.PLAYER);
     }
 
     @Override
     public void update(float delta) {
+        super.update(delta);
         angleUpdate(delta);
-        directionUpdate(delta);
-        positionUpdate(delta);
     }
 
-    private void createBody() {
+    @Override
+    public void createBodies() {
         BodyBuilder builder = new BodyBuilder(world);
         builder
                 .setBodyType(BodyDef.BodyType.DynamicBody)
@@ -72,7 +69,8 @@ public class Player extends AbstractEntity {
         angle = MathUtils.atan2(mousePosition.y - y, mousePosition.x - x);
     }
 
-    private void directionUpdate(float delta) {
+    @Override
+    public void updateDirection(float delta) {
         int i = 1;
         int j = 1;
 
@@ -92,48 +90,23 @@ public class Player extends AbstractEntity {
             j += 1;
         }
 
+        if (i == 1 && j == 1) {
+            state = STOPPED;
+            return;
+        }
+
+        state = MOVING;
         direction = dirMatrix[j][i];
     }
 
-    private void positionUpdate(float delta) {
-        int verticalForce = 0;
-        int horizontalForce = 0;
-
-        switch (direction) {
-
-            case UP:
-                verticalForce += 1;
-                break;
-            case UP_RIGHT:
-                horizontalForce += 1;
-                verticalForce += 1;
-                break;
-            case RIGHT:
-                horizontalForce += 1;
-                break;
-            case DOWN_RIGHT:
-                verticalForce -= 1;
-                horizontalForce += 1;
-                break;
-            case DOWN:
-                verticalForce -= 1;
-                break;
-            case DOWN_LEFT:
-                horizontalForce -= 1;
-                verticalForce -= 1;
-                break;
-            case LEFT:
-                horizontalForce -= 1;
-                break;
-            case UP_LEFT:
-                horizontalForce -= 1;
-                verticalForce += 1;
-                break;
-            case UNDEFINED:
-                break;
+    @Override
+    public void updatePosition(float delta) {
+        if (state != MOVING) {
+            body.setLinearVelocity(0, 0);
+            return;
         }
 
-        body.setLinearVelocity(horizontalForce * 5, verticalForce * 5);
+        body.setLinearVelocity(speed);
     }
 
     //region Get/Set
@@ -141,16 +114,8 @@ public class Player extends AbstractEntity {
         body.setTransform(position, body.getAngle());
     }
 
-    public Vector2 getPosition() {
-        return body.getPosition();
-    }
-
     public void setDirection(Direction direction) {
         this.direction = direction;
-    }
-
-    public Direction getDirection() {
-        return direction;
     }
     //endregion
 }
