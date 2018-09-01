@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="32" infinite="0" nextobjectid="85908">
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="32" tileheight="32" infinite="0" nextobjectid="85916">
  <properties>
   <property name="middleLayer" type="int" value="5"/>
  </properties>
@@ -26,26 +26,11 @@
    eJzt0TENAAAIwDD8a+ZAAh8J0CZTsAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC2yCZu8/83/3/zHwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIApBXtSH4E=
   </data>
   </layer>
-  <layer name="shadows" width="128" height="128">
-   <data encoding="base64" compression="zlib">
-   eJzt0aENACAUQ0HM338EVmETGAVNgsSQ3rkmda81AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgZ6PO3ev+I8PSP5r+2fTPNvUHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4JENQn0E/Q==
-  </data>
-  </layer>
+ </group>
+ <group name="middleground">
   <layer name="trees_back" width="128" height="128">
    <data encoding="base64" compression="zlib">
-   eJzt1UkKgDAQBEDxl37F9R+uX3WOAeNRkKQK+pDJsWGmaQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4q659zqaYzZEl80c53no+4n1GLv0XLe25jwyRUedVWqP3LbIn/eduA3WwD+qW2wcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPCFG7unDhM=
-  </data>
-  </layer>
- </group>
- <group name="foreground">
-  <layer name="foreground" width="128" height="128">
-   <data encoding="base64" compression="zlib">
-   eJzt2TENAAAIwDAeLCMFvXjgISGtgv2LAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgq8rrAgAAAAAAAACutGcMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMDCAMVPARc=
-  </data>
-  </layer>
-  <layer name="trees top" width="128" height="128">
-   <data encoding="base64" compression="zlib">
-   eJzt1sltwlAARdEPXYRA+oAkVAL0xdhHJvpg7ANIEG/hFXuCEp8jXVl/96Un2S4FAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4q74bpfykc+PeN+GWDtn3mE5XO7ebpXTSU/M+9+J3PGTfVnq82vkl59fUt/+/1s2+vfScxnkHTNI0DXIeppH9a+Mtu7+nj+pbMMtznhb+AWphlZ3XaVPt/ZnnV1rav5a22X2X9vYHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgRi5+lRZs
+   eJzt1DkKgEAQRcFmju16D9er2qGJoYpOFfxgsoEHHQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAl/QlYsiN5e2fcKerzmu+t9yu/6+dOze5NtdpXqUpu8+5RX/CPaidewAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwFMOEr8NXQ==
   </data>
   </layer>
   <layer name="buildings walls" width="128" height="128">
@@ -54,23 +39,45 @@
   </data>
   </layer>
  </group>
+ <group name="foreground">
+  <layer name="shadows" width="128" height="128">
+   <data encoding="base64" compression="zlib">
+   eJzt0aENACAUQ0HM338EVmETGAVNgsSQ3rkmda81AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgZ6PO3ev+I8PSP5r+2fTPNvUHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4JENQn0E/Q==
+  </data>
+  </layer>
+  <layer name="foreground" width="128" height="128">
+   <data encoding="base64" compression="zlib">
+   eJzt2TENAAAIwDAeLCMFvXjgISGtgv2LAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgq8rrAgAAAAAAAACutGcMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMDCAMVPARc=
+  </data>
+  </layer>
+  <layer name="trees_trunk" width="128" height="128">
+   <data encoding="base64" compression="zlib">
+   eJzt1TENAAAIBDGCS/wbQQXhh1bBbVcFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQKrp7wIA0ngDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlxao9wC3
+  </data>
+  </layer>
+  <layer name="trees top" width="128" height="128">
+   <data encoding="base64" compression="zlib">
+   eJzt1sltwlAARdEPXYRA+oAkVAL0xdhHJvpg7ANIEG/hFXuCEp8jXVl/96Un2S4FAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4q74bpfykc+PeN+GWDtn3mE5XO7ebpXTSU/M+9+J3PGTfVnq82vkl59fUt/+/1s2+vfScxnkHTNI0DXIeppH9a+Mtu7+nj+pbMMtznhb+AWphlZ3XaVPt/ZnnV1rav5a22X2X9vYHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgRi5+lRZs
+  </data>
+  </layer>
+ </group>
  <objectgroup name="collision">
-  <object id="85888" x="1440" y="2128" width="128" height="16"/>
-  <object id="85890" x="1600" y="2129" width="96" height="15"/>
-  <object id="85891" x="1680" y="2129" width="16" height="143"/>
-  <object id="85892" x="1504" y="2260" width="192" height="12"/>
-  <object id="85893" x="1440" y="2128" width="16" height="144"/>
-  <object id="85903" x="1665.25" y="2489.25">
-   <polygon points="0,0 11.75,7.5 29,1 23.75,-25 5.75,-24.75"/>
+  <object id="85888" x="1440" y="2136" width="128" height="8"/>
+  <object id="85890" x="1600" y="2136" width="96" height="8"/>
+  <object id="85891" x="1680" y="2144" width="16" height="128"/>
+  <object id="85892" x="1504" y="2264" width="192" height="8"/>
+  <object id="85893" x="1440" y="2144" width="16" height="128"/>
+  <object id="85912" x="1571" y="2453.33">
+   <polygon points="0,0 12.3333,-5 27.3333,0.666667 25.3333,9.33333 1.33333,9"/>
   </object>
-  <object id="85904" x="1793.25" y="2553.25">
-   <polygon points="0,0 11.75,7.5 29,1 23.75,-25 5.75,-24.75"/>
+  <object id="85913" x="1666.67" y="2485.67">
+   <polygon points="0,0 12.3333,-5 27.3333,0.666667 25.3333,9.33333 1.33333,9"/>
   </object>
-  <object id="85905" x="1761" y="2425.25">
-   <polygon points="0,0 11.75,7.5 29,1 23.75,-25 5.75,-24.75"/>
+  <object id="85914" x="1762.67" y="2422.67">
+   <polygon points="0,0 12.3333,-5 27.3333,0.666667 25.3333,9.33333 1.33333,9"/>
   </object>
-  <object id="85906" x="1569" y="2457.25">
-   <polygon points="0,0 11.75,7.5 29,1 23.75,-25 5.75,-24.75"/>
+  <object id="85915" x="1794" y="2550.33">
+   <polygon points="0,0 12.3333,-5 27.3333,0.666667 25.3333,9.33333 1.33333,9"/>
   </object>
  </objectgroup>
  <objectgroup name="objects">
