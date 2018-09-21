@@ -1,5 +1,8 @@
 package com.mygdx.game.entities;
 
+/**
+ * Entity types and their subtypes.
+ */
 public enum EntityType {
     PLAYER("player"),
     PORTAL("portal"),
@@ -8,11 +11,22 @@ public enum EntityType {
     private String type;
     private String subtype;
 
+    /**
+     * Adds new entity main type.
+     *
+     * @param type entity type
+     */
     EntityType(String type) {
         this.type = type;
         this.subtype = null;
     }
 
+    /**
+     * Adds new entity type based on some main type.
+     *
+     * @param type    main type
+     * @param subtype subtype of a main type
+     */
     EntityType(String type, String subtype) {
         this.type = type;
         this.subtype = subtype;

@@ -4,6 +4,9 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.mygdx.game.entities.InvisiblePortal;
 import com.mygdx.game.entities.Player;
 
+/**
+ * A resolver that handles contact between {@link Player} and a {@link InvisiblePortal portal}.
+ */
 public class PlayerPortalContactResolver extends AbstractContactResolver<Player, InvisiblePortal> {
 
     @Override

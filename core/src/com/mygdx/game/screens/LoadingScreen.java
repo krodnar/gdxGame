@@ -7,6 +7,9 @@ import com.badlogic.gdx.utils.Timer;
 import com.mygdx.game.Application;
 import com.mygdx.game.managers.ScreenManager;
 
+/**
+ * A screen that loads assets and shows current progress of loading.
+ */
 public class LoadingScreen extends AbstractScreen {
 
     private ShapeRenderer renderer;
@@ -37,6 +40,7 @@ public class LoadingScreen extends AbstractScreen {
         renderer.end();
     }
 
+    @Override
     public void update(float delta) {
         if (app.assets.update() && !loaded) {
             Timer.schedule(new Timer.Task() {

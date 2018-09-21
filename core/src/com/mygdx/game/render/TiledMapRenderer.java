@@ -37,6 +37,18 @@ import static com.badlogic.gdx.graphics.g2d.Batch.Y2;
 import static com.badlogic.gdx.graphics.g2d.Batch.Y3;
 import static com.badlogic.gdx.graphics.g2d.Batch.Y4;
 
+/**
+ * A map renderer that provides a way to render objects in-between map layers.
+ * <p>
+ * TiledMapRenderer provides methods for drawing separately background, middleground and foreground.
+ * Background is always under any objects, foreground is vice versa. Middleground consists of
+ * objects that can be in front or behind any entities. Renderer draws entities in front any object
+ * if its y coordinate is lower and vice versa. Additional check of z-index is under consideration.
+ * <p>
+ * For proper work of renderer a map should consist of three layers that are named "background",
+ * "middleground" and "foreground". This layers can be {@link MapGroupLayer} but inherited
+ * group layers currently are not supported.
+ */
 public class TiledMapRenderer extends BatchTiledMapRenderer {
 
     private TiledRenderersController renderersManager;
@@ -62,26 +74,53 @@ public class TiledMapRenderer extends BatchTiledMapRenderer {
     private int colStart;
     private int colEnd;
 
+    /**
+     * Creates TiledMapRenderer for a specific map and own batch.
+     *
+     * @param map tiled map to render
+     */
     public TiledMapRenderer(TiledMap map) {
         super(map);
         getMapLayersIndices();
     }
 
+    /**
+     * Creates TiledMapRenderer for a map using specified batch.
+     *
+     * @param map   tiled map to render
+     * @param batch batch to use for rendering
+     */
     public TiledMapRenderer(TiledMap map, Batch batch) {
         super(map, batch);
         getMapLayersIndices();
     }
 
+    /**
+     * Creates TiledMapRenderer for a map scaled to passed unit.
+     *
+     * @param map       tiled map to render
+     * @param unitScale scale coefficient
+     */
     public TiledMapRenderer(TiledMap map, float unitScale) {
         super(map, unitScale);
         getMapLayersIndices();
     }
 
+    /**
+     * Creates TiledMapRenderer for a map scaled to passed unit using specified batch.
+     *
+     * @param map       tiled map to render
+     * @param unitScale scale coefficient
+     * @param batch     batch to use for rendering
+     */
     public TiledMapRenderer(TiledMap map, float unitScale, Batch batch) {
         super(map, unitScale, batch);
         getMapLayersIndices();
     }
 
+    /**
+     * Renders background layer(s).
+     */
     public void renderBackground() {
         if (backgroundLayer == -1) {
             Gdx.app.error("TiledMapRenderer", "Background layer is not set");
@@ -91,6 +130,9 @@ public class TiledMapRenderer extends BatchTiledMapRenderer {
         render(new int[]{backgroundLayer});
     }
 
+    /**
+     * Renders foreground layer(s).
+     */
     public void renderForeground() {
         if (foregroundLayer == -1) {
             Gdx.app.error("TiledMapRenderer", "Foreground layer is not set");
@@ -100,6 +142,9 @@ public class TiledMapRenderer extends BatchTiledMapRenderer {
         render(new int[]{foregroundLayer});
     }
 
+    /**
+     * Renders middleground layer(s) and entities.
+     */
     public void renderMiddleground() {
         if (middleLayer == -1) {
             Gdx.app.error("TiledMapRenderer", "Middleground layer is not set");
@@ -138,6 +183,11 @@ public class TiledMapRenderer extends BatchTiledMapRenderer {
         batch.end();
     }
 
+    /**
+     * Renders specific area of a tile layer.
+     *
+     * @param layer tile layer for rendering
+     */
     @Override
     public void renderTileLayer(TiledMapTileLayer layer) {
         setSizes(layer);
@@ -164,6 +214,11 @@ public class TiledMapRenderer extends BatchTiledMapRenderer {
         }
     }
 
+    /**
+     * Renders multiple layers and objects that can be in-front or behind them.
+     *
+     * @param layers layers for rendering
+     */
     private void renderLayersAndObjects(List<TiledMapTileLayer> layers) {
         TiledMapTileLayer layer = layers.get(0);
 
@@ -202,6 +257,11 @@ public class TiledMapRenderer extends BatchTiledMapRenderer {
         }
     }
 
+    /**
+     * Defines sizes and offsets of layer that are being used during the render.
+     *
+     * @param layer layer to get sizes from
+     */
     private void setSizes(TiledMapTileLayer layer) {
         final Color batchColor = batch.getColor();
         color = Color.toFloatBits(batchColor.r, batchColor.g, batchColor.b, batchColor.a * layer.getOpacity());
@@ -225,6 +285,9 @@ public class TiledMapRenderer extends BatchTiledMapRenderer {
                 (int)((viewBounds.y + viewBounds.height + layerTileHeight - layerOffsetY) / layerTileHeight));
     }
 
+    /**
+     * Defines indices of back- middle- and foreground layers.
+     */
     private void getMapLayersIndices() {
         MapLayers layers = map.getLayers();
         for (int i = 0; i < layers.size(); i++) {
@@ -240,6 +303,14 @@ public class TiledMapRenderer extends BatchTiledMapRenderer {
         }
     }
 
+    /**
+     * Renders one tile of tile layers
+     *
+     * @param cell  cell from which to get tile
+     * @param x     the x coordinate
+     * @param y     the y coordinate
+     * @param color current batch color
+     */
     private void renderTile(TiledMapTileLayer.Cell cell, float x, float y, float color) {
         final boolean flipX = cell.getFlipHorizontally();
         final boolean flipY = cell.getFlipVertically();

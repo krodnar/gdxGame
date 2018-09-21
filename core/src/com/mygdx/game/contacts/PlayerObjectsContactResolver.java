@@ -4,6 +4,9 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.mygdx.game.entities.Player;
 import com.mygdx.game.entities.WorldObject;
 
+/**
+ * A resolver that handles contact between {@link Player} and a {@link WorldObject}.
+ */
 public class PlayerObjectsContactResolver extends AbstractContactResolver<Player, WorldObject> {
 
     @Override

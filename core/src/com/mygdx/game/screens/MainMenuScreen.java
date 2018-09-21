@@ -15,6 +15,9 @@ import com.mygdx.game.managers.ScreenManager;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 
+/**
+ * A screen with controls to start a game or to exit.
+ */
 public class MainMenuScreen extends AbstractScreen {
 
     private Skin skin;

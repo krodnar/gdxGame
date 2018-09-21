@@ -8,6 +8,9 @@ import com.mygdx.game.GameWorld;
 import com.mygdx.game.managers.ScreenManager;
 import com.mygdx.game.render.GameRenderer;
 
+/**
+ * A screen that manages a {@link GameWorld} and a {@link GameScreen}.
+ */
 public class GameScreen extends AbstractScreen {
 
     private GameWorld world;
@@ -35,6 +38,7 @@ public class GameScreen extends AbstractScreen {
         renderer.render(delta);
     }
 
+    @Override
     public void update(float delta) {
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             app.setScreen(ScreenManager.State.MENU);

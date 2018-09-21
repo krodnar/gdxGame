@@ -14,6 +14,14 @@ import static com.mygdx.game.utils.Constants.PPM;
 
 public class PolylinesCollisionParser {
 
+    /**
+     * Connects all polylines into one or multiple bigger {@link ChainShape chainshapes}.
+     * Only polylines that start at the end of another one will be connected into one. All
+     * polylines should consist of only two points.
+     *
+     * @param world     world to create chainshape in
+     * @param polylines polylines that need to be connected
+     */
     public static void parseCollision(World world, List<Polyline> polylines) {
         List<Vector2> vertices = new LinkedList<Vector2>();
 
@@ -43,6 +51,12 @@ public class PolylinesCollisionParser {
         createChain(world, vertices.toArray(new Vector2[]{}));
     }
 
+    /**
+     * Creates chain from vertices.
+     *
+     * @param world    world to create chainshape in
+     * @param vertices vertices of a chainshape
+     */
     private static void createChain(World world, Vector2[] vertices) {
         ChainShape chain = new ChainShape();
         chain.createChain(vertices);
@@ -55,6 +69,14 @@ public class PolylinesCollisionParser {
         chain.dispose();
     }
 
+    /**
+     * Searches through the list of polylines for a line that starts or ends (direction does
+     * not matter) at the given point.
+     *
+     * @param polylines list of all available polylines
+     * @param point     end of previous polyline
+     * @return polyline that starts at given point or null if there is no such polyline
+     */
     private static Polyline getNextPolyline(List<Polyline> polylines, Vector2 point) {
         if (point == null) {
             return null;
@@ -69,6 +91,11 @@ public class PolylinesCollisionParser {
         return null;
     }
 
+    /**
+     * @param polyline polyline that contains a point
+     * @param point    one of the two points of the polyline
+     * @return second point of given polyline
+     */
     private static Vector2 getNextPoint(Polyline polyline, Vector2 point) {
         Vector2 second;
         Vector2 pointA = getFirstPoint(polyline);
@@ -83,6 +110,13 @@ public class PolylinesCollisionParser {
         return second;
     }
 
+    /**
+     * Checks if polyline contains a given point.
+     *
+     * @param polyline polyline to check
+     * @param point    point to check
+     * @return true if polyline contains the point, false otherwise
+     */
     private static boolean lineContainsPoint(Polyline polyline, Vector2 point) {
         Vector2 pointA = getFirstPoint(polyline);
         Vector2 pointB = getSecondPoint(polyline);

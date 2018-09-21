@@ -1,8 +1,16 @@
 package com.mygdx.game.render;
 
-public interface EntityRenderer {
+import com.badlogic.gdx.utils.Disposable;
 
-    void render(IGameRenderer renderer);
+/**
+ * An EntityRenderer is used to render a specific entity.
+ */
+public interface EntityRenderer extends Disposable {
 
-    void dispose();
+    /**
+     * Renders an entity.
+     *
+     * @param renderer main game renderer
+     */
+    void render(GameRenderer renderer);
 }

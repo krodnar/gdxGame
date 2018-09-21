@@ -5,8 +5,9 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.utils.Disposable;
 import com.mygdx.game.Application;
-import com.mygdx.game.IGameWorld;
+import com.mygdx.game.GameWorld;
 import com.mygdx.game.entities.Player;
 
 import java.util.ArrayList;
@@ -14,11 +15,14 @@ import java.util.List;
 
 import static com.mygdx.game.utils.Constants.PPM;
 
-public class GameRenderer implements IGameRenderer {
+/**
+ * Main renderer that manages rendering of all {@link GameWorld } components
+ * such as map, world and entities. Also it controls a camera.
+ */
+public class GameRenderer implements Disposable {
 
-    private Application app;
-
-    private IGameWorld world;
+    private final Application app;
+    private final GameWorld world;
 
     private TiledMapRenderer mapRenderer;
     private Box2DDebugRenderer debugRenderer;
@@ -26,7 +30,13 @@ public class GameRenderer implements IGameRenderer {
 
     private boolean debug = false;
 
-    public GameRenderer(Application app, IGameWorld world) {
+    /**
+     * Creates new GameRenderer for specific GameWorld.
+     *
+     * @param app main app class
+     * @param world a world to render
+     */
+    public GameRenderer(Application app, GameWorld world) {
         this.world = world;
         this.app = app;
 
@@ -45,11 +55,11 @@ public class GameRenderer implements IGameRenderer {
         app.batch.setProjectionMatrix(app.camera.combined);
     }
 
-    @Override
-    public void update(float delta) {
-    }
-
-    @Override
+    /**
+     * Renders all components of world.
+     *
+     * @param delta time passed after the last frame
+     */
     public void render(float delta) {
         cameraUpdate(delta);
 
@@ -76,6 +86,11 @@ public class GameRenderer implements IGameRenderer {
         playerRenderer.dispose();
     }
 
+    /**
+     * Sets camera to player position using linear interpolation for smooth movement.
+     *
+     * @param delta time passed after the last frame
+     */
     private void cameraUpdate(float delta) {
         Player player = world.getPlayer();
         float lerp = 0.2f;

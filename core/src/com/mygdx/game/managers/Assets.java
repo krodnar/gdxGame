@@ -9,6 +9,9 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.mygdx.game.utils.R;
 
+/**
+ * A class that manages assets and provides the way of organizing and loading all assets.
+ */
 public class Assets extends AssetManager {
 
     public static final AssetDescriptor<TextureAtlas> characterRunning =

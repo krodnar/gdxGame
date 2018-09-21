@@ -14,7 +14,34 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import static com.mygdx.game.utils.Constants.PPM;
 
-@SuppressWarnings("UnusedReturnValue")
+/**
+ * A builder for a Box2D bodies.
+ * <p>
+ * Default properties:
+ * <pre>
+ * Circle shape, radius 16
+ *
+ * Fixed rotation   = false;
+ * Bullet           = false;
+ * Active           = true;
+ * Allow sleep      = true;
+ * Awake            = true;
+ * Is sensor        = false;
+ *
+ * Linear damping   = 0.0f;
+ * Angular damping  = 0.0f;
+ * Density          = 1.0f;
+ * Angle            = 0.0f;
+ * Gravity scale    = 1.0f;
+ * Friction         = 0.2f;
+ * Restitution      = 0.0f;
+ * </pre>
+ *
+ * @see Body
+ * @see World
+ * @see BodyDef
+ */
+@SuppressWarnings({"UnusedReturnValue", "unused"})
 public class BodyBuilder {
 
     private final World world;
@@ -39,6 +66,13 @@ public class BodyBuilder {
     private float friction = 0.2f;
     private float restitution = 0;
 
+    /**
+     * Creates a builder for a Box2D world with set default circle shape.
+     *
+     * @param world Box2D world to create bodies in
+     * @see Body
+     * @see Shape
+     */
     public BodyBuilder(World world) {
         this.world = world;
         shape.setRadius(16 / PPM);
@@ -203,6 +237,11 @@ public class BodyBuilder {
         return this;
     }
 
+    /**
+     * Creates a body with specified or default properties and disposes it's shape.
+     *
+     * @return the body
+     */
     public Body build() {
         Body body;
         BodyDef bDef = new BodyDef();

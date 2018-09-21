@@ -54,7 +54,7 @@ public class PlayerRenderer implements TiledEntityRenderer {
     }
 
     @Override
-    public void render(IGameRenderer renderer) {
+    public void render(GameRenderer renderer) {
         stateTime += Gdx.graphics.getDeltaTime();
 
         animationUpdate(player);

@@ -11,6 +11,9 @@ import com.mygdx.game.managers.ScreenManager;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 
+/**
+ * A typical splash screen which displays logo (currently drake).
+ */
 public class SplashScreen extends AbstractScreen {
 
     private Image splashImage;

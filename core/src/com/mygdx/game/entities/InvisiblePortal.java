@@ -2,12 +2,10 @@ package com.mygdx.game.entities;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.Application;
-import com.mygdx.game.render.IGameRenderer;
 import com.mygdx.game.utils.BodyBuilder;
 
 public class InvisiblePortal extends B2DEntity {

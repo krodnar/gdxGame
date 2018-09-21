@@ -22,8 +22,19 @@ import com.mygdx.game.entities.WorldObject;
 
 import static com.mygdx.game.utils.Constants.PPM;
 
+/**
+ * A class with methods for creating bodies in a Box2D world and getting body shape from a
+ * {@link MapObject}.
+ */
 public class MapObjectsCollisionParser {
 
+    /**
+     * Creates corresponding body for every map object, except {@link TextureMapObject}.
+     *
+     * @param world   world to create bodies in
+     * @param objects list of map objects to parse
+     * @return list of created bodies
+     */
     public static Array<Body> parseObjectsCollision(World world, MapObjects objects) {
         Array<Body> bodies = new Array<Body>();
 
@@ -49,6 +60,12 @@ public class MapObjectsCollisionParser {
         return bodies;
     }
 
+    /**
+     * Creates a {@link Shape} that corresponds to the passed {@link MapObject}.
+     *
+     * @param object map object for which to create shape
+     * @return corresponding shape or null if map object class is not supported
+     */
     public static Shape getObjectCollision(MapObject object) {
         Shape shape;
 

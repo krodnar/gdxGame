@@ -1,12 +1,20 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.managers.Assets;
 import com.mygdx.game.managers.ScreenManager;
 import com.mygdx.game.managers.ScreenManager.State;
 
+/**
+ * A {@link Game} that uses {@link ScreenManager} to manage screens and contains instances
+ * of heavy global objects such as {@link SpriteBatch}.
+ *
+ * @see ScreenManager
+ * @see SpriteBatch
+ */
 public class Application extends Game {
 
     public static final String TITLE = "Mess";
@@ -35,11 +43,12 @@ public class Application extends Game {
         screenManager.setScreen(State.LOADING);
     }
 
-    @Override
-    public void render() {
-        super.render();
-    }
-
+    /**
+     * Sets current screen accordingly to a state. Preferred version over default method because it
+     * delegates creating of a screen.
+     *
+     * @param state state of an application for which you want to create screen
+     */
     public void setScreen(State state) {
         screenManager.setScreen(state);
     }

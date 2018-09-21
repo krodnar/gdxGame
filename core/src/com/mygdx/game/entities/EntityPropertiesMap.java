@@ -5,6 +5,9 @@ import com.badlogic.gdx.Gdx;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * A map that holds properties of any entity. Strongly considered for refactoring.
+ */
 public final class EntityPropertiesMap {
 
     public enum EntityProperties {

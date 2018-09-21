@@ -2,6 +2,9 @@ package com.mygdx.game.utils;
 
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * Directions and a corresponding vectors in 2D.
+ */
 public enum Direction {
     UP          (new Vector2(0, 1)),
     UP_RIGHT    (new Vector2(1, 1)),

@@ -22,6 +22,9 @@ import static com.mygdx.game.utils.Direction.UP;
 import static com.mygdx.game.utils.Direction.UP_LEFT;
 import static com.mygdx.game.utils.Direction.UP_RIGHT;
 
+/**
+ * A main character entity controlled by human player.
+ */
 public class Player extends ActiveEntity {
 
     public static final int STOPPED = 0;
@@ -35,6 +38,12 @@ public class Player extends ActiveEntity {
             {DOWN_LEFT, DOWN, DOWN_RIGHT}
     };
 
+    /**
+     * Creates new Player in the world.
+     *
+     * @param application main app class
+     * @param world       world to create player in
+     */
     public Player(Application application, World world) {
         super(application, world);
         initialize(EntityType.PLAYER);

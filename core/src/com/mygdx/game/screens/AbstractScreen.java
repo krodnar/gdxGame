@@ -6,6 +6,10 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.Application;
 
+/**
+ * A class that provides a reference to {@link Application}, a stage and adds
+ * {@link AbstractScreen#update(float)} to lifecycle of a screen.
+ */
 public abstract class AbstractScreen implements Screen {
 
     protected final Application app;
