@@ -33,17 +33,19 @@ public class ScreenManager implements Disposable {
 
     /**
      * Creates a ScreenManager with provided {@link Application}, which will be passed to screens.
+     *
      * @param app application main class
      */
     public ScreenManager(Application app) {
         this.app = app;
-        screens = new HashMap<State, AbstractScreen>();
+        screens = new HashMap<>();
     }
 
     /**
      * Sets current screen accordingly to the specified state.
      * {@link Screen#hide()} is called on old screen, and {@link Screen#show()} is called on the
      * new screen. Uses lazy initialization.
+     *
      * @param state state of an application to switch on
      */
     public void setScreen(State state) {
@@ -61,10 +63,12 @@ public class ScreenManager implements Disposable {
 
     private AbstractScreen getScreen(State state) {
         if (screens.get(state) == null) {
-            return createScreen(state);
-        } else {
-            return screens.get(state);
+            AbstractScreen screen = createScreen(state);
+            screens.put(state, screen);
+            return screen;
         }
+
+        return screens.get(state);
     }
 
     private AbstractScreen createScreen(State state) {
