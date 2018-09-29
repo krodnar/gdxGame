@@ -2,7 +2,6 @@ package com.mygdx.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -10,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.Application;
-import com.mygdx.game.utils.R;
+import com.mygdx.game.managers.Assets;
 import com.mygdx.game.managers.ScreenManager;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
@@ -34,9 +33,7 @@ public class MainMenuScreen extends AbstractScreen {
 
         stage.clear();
 
-        skin = new Skin();
-        skin.addRegions(app.assets.get(R.ui.skin_default_atlas, TextureAtlas.class));
-        skin.load(Gdx.files.internal(R.ui.skin_default_json));
+        skin = app.assets.get(Assets.skinDefaultAtlas);
 
         initButtons();
     }

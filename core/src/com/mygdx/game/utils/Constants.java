@@ -6,4 +6,6 @@ public final class Constants {
 
     // pixels per meter
     public static final float PPM = 32f;
+
+    public static final float DEFAULT_FRAME_DURATION = 0.05f;
 }

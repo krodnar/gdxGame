@@ -6,7 +6,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Disposable;
 import com.mygdx.game.contacts.WorldContactListener;
 import com.mygdx.game.contacts.ContactManager;
-import com.mygdx.game.utils.R;
+import com.mygdx.game.managers.Assets;
 import com.mygdx.game.entities.Player;
 import com.mygdx.game.map.MapParser;
 
@@ -29,7 +29,7 @@ public class GameWorld implements Disposable {
         this.app = app;
 
         world = new World(new Vector2(0, 0), false);
-        map = app.assets.get(R.maps.map0);
+        map = app.assets.get(Assets.map0);
         player = new Player(app, world);
 
         MapParser.parseObjectsCollision(world, map, "collision");

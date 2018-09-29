@@ -7,42 +7,93 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.mygdx.game.utils.R;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.utils.Disposable;
 
 /**
- * A class that manages assets and provides the way of organizing and loading all assets.
+ * A class that manages assets and provides the way of organizing and loading them.
  */
-public class Assets extends AssetManager {
+public class Assets implements Disposable {
 
-    public static final AssetDescriptor<TextureAtlas> characterRunning =
-            new AssetDescriptor<TextureAtlas>(R.character.running_atlas, TextureAtlas.class);
-    public static final AssetDescriptor<TextureAtlas> characterStanding =
-            new AssetDescriptor<TextureAtlas>(R.character.standing_atlas, TextureAtlas.class);
+    public static final AssetDescriptor<TextureAtlas> characterAtlas =  new AssetDescriptor<>("character/character.atlas", TextureAtlas.class);
+    public static final AssetDescriptor<Texture> texture =              new AssetDescriptor<>("images/texture.png", Texture.class);
+    public static final AssetDescriptor<Texture> drake =                new AssetDescriptor<>("images/drake.jpg", Texture.class);
+    public static final AssetDescriptor<Skin> skinDefaultAtlas =        new AssetDescriptor<>("ui/skins/uiskin.json", Skin.class);
+    public static final AssetDescriptor<TiledMap> map0 =                new AssetDescriptor<>("maps/map_v0.tmx", TiledMap.class);
 
-    public static final AssetDescriptor<Texture> texture =
-            new AssetDescriptor<Texture>(R.images.texture, Texture.class);
-    public static final AssetDescriptor<Texture> drake =
-            new AssetDescriptor<Texture>(R.images.drake, Texture.class);
+    public final AssetManager manager;
 
-    public static final AssetDescriptor<TextureAtlas> skinDefaultAtlas =
-            new AssetDescriptor<TextureAtlas>(R.ui.skin_default_atlas, TextureAtlas.class);
+    public Assets() {
+        manager = new AssetManager();
+    }
 
-    public static final AssetDescriptor<TiledMap> map0 =
-            new AssetDescriptor<TiledMap>(R.maps.map0, TiledMap.class);
-    public static final AssetDescriptor<TiledMap> map1 =
-            new AssetDescriptor<TiledMap>(R.maps.map1, TiledMap.class);
-
+    /**
+     * Initializes loading of all assets for the game. Note that this method only puts assets in a
+     * queue and to keep loading them you should use {@link #update()}.
+     */
     public void initLoad() {
-        load(characterRunning);
-        load(characterStanding);
+        manager.load(characterAtlas);
 
-        load(texture);
-        load(drake);
+        manager.load(texture);
+        manager.load(drake);
 
-        load(skinDefaultAtlas);
+        manager.load(skinDefaultAtlas);
 
-        setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
-        load(map0);
-        load(map1);
+        manager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
+        manager.load(map0);
+    }
+
+    /**
+     * Loads a small part of queued assets.
+     *
+     * @return true if all queued assets are loaded, false otherwise
+     */
+    public boolean update() {
+        return manager.update();
+    }
+
+    /**
+     * Returns progress of loading of all assets in percents.
+     *
+     * @return progress in percents
+     */
+    public float getProgress() {
+        return manager.getProgress();
+    }
+
+    /**
+     * Returns an asset by its file name.
+     *
+     * @param filename the assets file name
+     * @return the asset
+     */
+    public <T> T get(String filename) {
+        return manager.get(filename);
+    }
+
+    /**
+     * Returns an asset of specified type by its file name.
+     *
+     * @param filename the asset file name
+     * @param type     the asset type
+     * @return the asset
+     */
+    public <T> T get(String filename, Class<T> type) {
+        return manager.get(filename, type);
+    }
+
+    /**
+     * Returns an asset by its {@link AssetDescriptor descriptor}.
+     *
+     * @param assetDescriptor the asset descriptor
+     * @return the asset
+     */
+    public <T> T get(AssetDescriptor<T> assetDescriptor) {
+        return manager.get(assetDescriptor);
+    }
+
+    @Override
+    public void dispose() {
+        manager.dispose();
     }
 }
