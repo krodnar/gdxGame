@@ -7,6 +7,8 @@ import com.mygdx.game.Application;
 import com.mygdx.game.entities.Entity;
 import com.mygdx.game.render.IGameRenderer;
 
+import static com.mygdx.game.utils.Constants.PPM;
+
 /**
  * A class that provides partial generic implementation of {@link EntityView} for most common
  * methods that can be overridden in next implementations.
@@ -32,7 +34,15 @@ public abstract class AbstractEntityView<T extends Entity> implements EntityView
      */
     public AbstractEntityView(Application app, T entity) {
         this.app = app;
+        preload();
         initialize(entity);
+    }
+
+    /**
+     * Preloads all necessary assets for this view.
+     */
+    public void preload() {
+
     }
 
     /**
@@ -103,12 +113,12 @@ public abstract class AbstractEntityView<T extends Entity> implements EntityView
 
     @Override
     public float getX() {
-        return entity.getPosition().x;
+        return entity.getPosition().x * PPM;
     }
 
     @Override
     public float getY() {
-        return entity.getPosition().y;
+        return entity.getPosition().y * PPM;
     }
 
     /**
