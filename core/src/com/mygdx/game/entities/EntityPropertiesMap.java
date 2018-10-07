@@ -14,7 +14,7 @@ public final class EntityPropertiesMap {
         WIDTH, HEIGHT, SPEED
     }
 
-    private static Map<EntityType, Properties> properties = new HashMap<EntityType, Properties>();
+    private static Map<EntityType, Properties> properties = new HashMap<>();
 
     static {
         init();

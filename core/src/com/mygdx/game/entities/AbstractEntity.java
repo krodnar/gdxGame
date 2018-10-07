@@ -10,8 +10,8 @@ import com.mygdx.game.entities.EntityPropertiesMap.EntityProperties;
  */
 public abstract class AbstractEntity implements Entity {
 
-    protected Application app;
-    protected World world;
+    protected final Application app;
+    protected final World world;
 
     protected Rectangle area = new Rectangle();
     private EntityType type;

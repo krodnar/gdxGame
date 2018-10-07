@@ -28,18 +28,22 @@ public class MapObjectsParser {
      * @param objects map objects to parse
      */
     public static void parse(Application app, GameWorld world, MapObjects objects) {
-        destinations = new HashMap<String, Vector2>();
-        portalDestinations = new HashMap<String, InvisiblePortal>();
+        destinations = new HashMap<>();
+        portalDestinations = new HashMap<>();
 
         for (MapObject object : objects) {
             String type = object.getProperties().get("type", String.class);
 
-            if (type.equals("playerPosition")) {
-                parsePlayerPosition(object, world.getPlayer());
-            } else if (type.equals("portal")) {
-                parsePortal(app, world.getWorld(), object);
-            } else if (type.equals("portDestination")) {
-                parseDestination(object);
+            switch (type) {
+                case "playerPosition":
+                    parsePlayerPosition(object, world.getPlayer());
+                    break;
+                case "portal":
+                    parsePortal(app, world.getWorld(), object);
+                    break;
+                case "portDestination":
+                    parseDestination(object);
+                    break;
             }
         }
 

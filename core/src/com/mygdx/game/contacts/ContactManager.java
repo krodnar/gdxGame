@@ -1,10 +1,7 @@
 package com.mygdx.game.contacts;
 
 import com.badlogic.gdx.physics.box2d.Contact;
-import com.mygdx.game.contacts.ContactResolver;
 import com.mygdx.game.entities.InvisiblePortal;
-import com.mygdx.game.contacts.PlayerObjectsContactResolver;
-import com.mygdx.game.contacts.PlayerPortalContactResolver;
 import com.mygdx.game.entities.Player;
 import com.mygdx.game.entities.WorldObject;
 
@@ -19,13 +16,13 @@ import java.util.HashMap;
  */
 public class ContactManager {
 
-    private HashMap<Integer, ContactResolver> resolvers;
+    private final HashMap<Integer, ContactResolver> resolvers;
 
     /**
      * Creates ContactManager with default {@link ContactResolver contact resolvers}.
      */
     public ContactManager() {
-        this.resolvers = new HashMap<Integer, ContactResolver>();
+        this.resolvers = new HashMap<>();
 
         initResolvers();
     }

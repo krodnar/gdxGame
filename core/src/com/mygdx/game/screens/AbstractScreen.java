@@ -13,7 +13,7 @@ import com.mygdx.game.Application;
 public abstract class AbstractScreen implements Screen {
 
     protected final Application app;
-    Stage stage;
+    final Stage stage;
 
     public AbstractScreen(Application app) {
         this.app = app;

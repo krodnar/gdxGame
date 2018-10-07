@@ -32,7 +32,7 @@ public class Player extends ActiveEntity {
 
     private float angle = 0;
 
-    private Direction[][] dirMatrix = new Direction[][]{
+    private final Direction[][] dirMatrix = new Direction[][]{
             {UP_LEFT, UP, UP_RIGHT},
             {LEFT, UNDEFINED, RIGHT},
             {DOWN_LEFT, DOWN, DOWN_RIGHT}

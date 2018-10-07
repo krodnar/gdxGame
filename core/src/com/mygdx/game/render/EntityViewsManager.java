@@ -16,7 +16,7 @@ import com.mygdx.game.views.entities.EntityView;
  */
 public class EntityViewsManager {
 
-    private GameRenderer gameRenderer;
+    private final GameRenderer gameRenderer;
 
     private float tileHeight = -1;
 

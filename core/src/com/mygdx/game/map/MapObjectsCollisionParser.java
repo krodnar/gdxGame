@@ -36,7 +36,7 @@ public class MapObjectsCollisionParser {
      * @return list of created bodies
      */
     public static Array<Body> parseObjectsCollision(World world, MapObjects objects) {
-        Array<Body> bodies = new Array<Body>();
+        Array<Body> bodies = new Array<>();
 
         for (MapObject object : objects) {
 

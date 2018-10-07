@@ -83,22 +83,22 @@ public abstract class AbstractContactResolver<V, S> implements ContactResolver<V
      * @return fixture of a first entity
      */
     //region Get/Set
-    protected Fixture getFixtureA() {
+    private Fixture getFixtureA() {
         return fixtureA;
     }
 
-    protected void setFixtureA(Fixture fixtureA) {
+    private void setFixtureA(Fixture fixtureA) {
         this.fixtureA = fixtureA;
     }
 
     /**
      * @return fixture of a second entity
      */
-    protected Fixture getFixtureB() {
+    private Fixture getFixtureB() {
         return fixtureB;
     }
 
-    protected void setFixtureB(Fixture fixtureB) {
+    private void setFixtureB(Fixture fixtureB) {
         this.fixtureB = fixtureB;
     }
     //endregion

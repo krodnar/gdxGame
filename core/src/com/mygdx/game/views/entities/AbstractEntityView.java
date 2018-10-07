@@ -18,7 +18,7 @@ import static com.mygdx.game.utils.Constants.PPM;
  */
 public abstract class AbstractEntityView<T extends Entity> implements EntityView<T> {
 
-    protected Application app;
+    protected final Application app;
 
     protected T entity;
     protected Sprite sprite;

@@ -15,8 +15,8 @@ import com.badlogic.gdx.utils.ObjectMap;
  */
 public class AtlasRegions<K> {
 
-    private ObjectMap<K, String> regionNamings;
-    private ObjectMap<K, TextureRegion> textureRegions = new ObjectMap<>();
+    private final ObjectMap<K, String> regionNamings;
+    private final ObjectMap<K, TextureRegion> textureRegions = new ObjectMap<>();
 
     private String regionPrefix = "";
 

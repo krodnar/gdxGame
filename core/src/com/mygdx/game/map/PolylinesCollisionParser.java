@@ -23,7 +23,7 @@ public class PolylinesCollisionParser {
      * @param polylines polylines that need to be connected
      */
     public static void parseCollision(World world, List<Polyline> polylines) {
-        List<Vector2> vertices = new LinkedList<Vector2>();
+        List<Vector2> vertices = new LinkedList<>();
 
         Polyline currentPolyline;
         Vector2 currentPoint = null;

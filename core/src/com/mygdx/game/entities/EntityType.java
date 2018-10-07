@@ -8,8 +8,8 @@ public enum EntityType {
     PORTAL("portal"),
     INVISIBLE_PORTAL("portal", "invisible");
 
-    private String type;
-    private String subtype;
+    private final String type;
+    private final String subtype;
 
     /**
      * Adds new entity main type.

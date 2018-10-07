@@ -19,7 +19,7 @@ import java.util.Map;
 public class ScreenManager implements Disposable {
 
     private final Application app;
-    private Map<State, AbstractScreen> screens;
+    private final Map<State, AbstractScreen> screens;
 
     /**
      * State of an application. Every state has corresponding {@link Screen}, i.e. {@link LoadingScreen}.

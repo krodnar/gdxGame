@@ -7,9 +7,7 @@ import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.PolylineMapObject;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Polyline;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.World;
@@ -19,8 +17,6 @@ import com.mygdx.game.GameWorld;
 
 import java.util.LinkedList;
 import java.util.List;
-
-import static com.mygdx.game.utils.Constants.PPM;
 
 /**
  * A MapParser provides several methods for parsing {@link MapObject} in different ways.
@@ -64,7 +60,7 @@ public class MapParser {
     public static void parseWorldCollision(World world, Map map, String layerNaming) {
         MapObjects objects = getLayerObjects(map, layerNaming);
 
-        List<Polyline> polylines = new LinkedList<Polyline>();
+        List<Polyline> polylines = new LinkedList<>();
 
         for (MapObject object : objects) {
             if (!(object instanceof PolylineMapObject)) {

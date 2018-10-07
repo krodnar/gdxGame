@@ -16,8 +16,8 @@ import com.mygdx.game.utils.Constants;
  */
 public class AtlasAnimation<K> {
 
-    private ObjectMap<K, String> regionNamings;
-    private ObjectMap<K, Animation<TextureRegion>> animations = new ObjectMap<>();
+    private final ObjectMap<K, String> regionNamings;
+    private final ObjectMap<K, Animation<TextureRegion>> animations = new ObjectMap<>();
 
     private float frameDuration = Constants.DEFAULT_FRAME_DURATION;
     private String regionPrefix = "";

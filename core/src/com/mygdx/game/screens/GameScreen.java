@@ -13,8 +13,8 @@ import com.mygdx.game.render.GameRenderer;
  */
 public class GameScreen extends AbstractScreen {
 
-    private GameWorld world;
-    private GameRenderer renderer;
+    private final GameWorld world;
+    private final GameRenderer renderer;
 
     public GameScreen(Application app) {
         super(app);

@@ -229,7 +229,7 @@ public class TiledMapRenderer extends BatchTiledMapRenderer {
     /**
      * Sets new {@link EntityViewsManager entity views manager} for this renderer
      *
-     * @param entityViewsManager
+     * @param entityViewsManager new entity views manager
      */
     public void setEntityViewsManager(EntityViewsManager entityViewsManager) {
         this.entityViewsManager = entityViewsManager;
