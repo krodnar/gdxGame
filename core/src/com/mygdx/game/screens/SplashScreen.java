@@ -6,11 +6,14 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.mygdx.game.Application;
-import com.mygdx.game.utils.R;
+import com.mygdx.game.managers.Assets;
 import com.mygdx.game.managers.ScreenManager;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 
+/**
+ * A typical splash screen which displays logo (currently drake).
+ */
 public class SplashScreen extends AbstractScreen {
 
     private Image splashImage;
@@ -24,7 +27,7 @@ public class SplashScreen extends AbstractScreen {
     public void show() {
         Gdx.input.setInputProcessor(stage);
 
-        Texture texture = app.assets.get(R.images.drake);
+        Texture texture = app.assets.get(Assets.drake);
         splashImage = new Image(texture);
         splashImage.addAction(sequence(
                 moveTo(-stage.getWidth() / 2 - splashImage.getWidth(), -splashImage.getHeight() / 2),

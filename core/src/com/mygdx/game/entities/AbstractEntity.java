@@ -5,10 +5,13 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.Application;
 import com.mygdx.game.entities.EntityPropertiesMap.EntityProperties;
 
+/**
+ * AbstractEntity provides a default constructor and base implementation of some methods.
+ */
 public abstract class AbstractEntity implements Entity {
 
-    protected Application app;
-    protected World world;
+    protected final Application app;
+    protected final World world;
 
     protected Rectangle area = new Rectangle();
     private EntityType type;
@@ -16,6 +19,12 @@ public abstract class AbstractEntity implements Entity {
     protected float width;
     protected float height;
 
+    /**
+     * Creates new entity
+     *
+     * @param app   main application class
+     * @param world world to create entity in
+     */
     public AbstractEntity(Application app, World world) {
         this.app = app;
         this.world = world;

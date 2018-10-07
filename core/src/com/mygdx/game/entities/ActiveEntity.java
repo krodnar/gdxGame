@@ -8,12 +8,21 @@ import com.mygdx.game.utils.Direction;
 
 import static com.mygdx.game.utils.Direction.DOWN;
 
+/**
+ * An entity that has state, direction and speed.
+ */
 public abstract class ActiveEntity extends StatefulEntity {
 
     protected Direction direction = DOWN;
     protected Vector2 speed = new Vector2();
     protected float maxSpeed;
 
+    /**
+     * Creates new ActiveEntity.
+     *
+     * @param app   main app class
+     * @param world world to create entity in
+     */
     public ActiveEntity(Application app, World world) {
         super(app, world);
     }
@@ -26,6 +35,7 @@ public abstract class ActiveEntity extends StatefulEntity {
 
     @Override
     public void update(float delta) {
+        super.update(delta);
         updateDirection(delta);
         updateSpeed(delta);
         updatePosition(delta);
@@ -36,10 +46,25 @@ public abstract class ActiveEntity extends StatefulEntity {
         speed.nor().scl(maxSpeed);
     }
 
+    /**
+     * Updates direction of the entity.
+     *
+     * @param delta time passed after the last frame
+     */
     protected abstract void updateDirection(float delta);
 
+    /**
+     * Updates position of the entity.
+     *
+     * @param delta time passed after the last frame
+     */
     protected abstract void updatePosition(float delta);
 
+    /**
+     * Gets current direction of the entity
+     *
+     * @return direction of the entity
+     */
     public Direction getDirection() {
         return direction;
     }

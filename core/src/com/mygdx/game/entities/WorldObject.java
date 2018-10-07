@@ -1,5 +1,10 @@
 package com.mygdx.game.entities;
 
+/**
+ * An objects existing in Box2D world that does not relate to any entity.
+ * @deprecated Any WorldObject should be replaced by appropriate {@link Entity}
+ */
+@Deprecated
 public class WorldObject {
 
     public enum Type {

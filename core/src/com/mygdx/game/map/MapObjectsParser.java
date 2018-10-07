@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.Application;
-import com.mygdx.game.IGameWorld;
+import com.mygdx.game.GameWorld;
 import com.mygdx.game.entities.InvisiblePortal;
 import com.mygdx.game.entities.Player;
 
@@ -20,19 +20,30 @@ public class MapObjectsParser {
     private static Map<String, Vector2> destinations;
     private static Map<String, InvisiblePortal> portalDestinations;
 
-    public static void parse(Application app, IGameWorld world, MapObjects objects) {
-        destinations = new HashMap<String, Vector2>();
-        portalDestinations = new HashMap<String, InvisiblePortal>();
+    /**
+     * Creates game entities based on a map objects.
+     *
+     * @param app     app class passed over to entities
+     * @param world   world for entities bodies
+     * @param objects map objects to parse
+     */
+    public static void parse(Application app, GameWorld world, MapObjects objects) {
+        destinations = new HashMap<>();
+        portalDestinations = new HashMap<>();
 
         for (MapObject object : objects) {
             String type = object.getProperties().get("type", String.class);
 
-            if (type.equals("playerPosition")) {
-                parsePlayerPosition(object, world.getPlayer());
-            } else if (type.equals("portal")) {
-                parsePortal(app, world.getWorld(), object);
-            } else if (type.equals("portDestination")) {
-                parseDestination(object);
+            switch (type) {
+                case "playerPosition":
+                    parsePlayerPosition(object, world.getPlayer());
+                    break;
+                case "portal":
+                    parsePortal(app, world.getWorld(), object);
+                    break;
+                case "portDestination":
+                    parseDestination(object);
+                    break;
             }
         }
 

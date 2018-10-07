@@ -22,6 +22,9 @@ import static com.mygdx.game.utils.Direction.UP;
 import static com.mygdx.game.utils.Direction.UP_LEFT;
 import static com.mygdx.game.utils.Direction.UP_RIGHT;
 
+/**
+ * A main character entity controlled by human player.
+ */
 public class Player extends ActiveEntity {
 
     public static final int STOPPED = 0;
@@ -29,12 +32,18 @@ public class Player extends ActiveEntity {
 
     private float angle = 0;
 
-    private Direction[][] dirMatrix = new Direction[][]{
+    private final Direction[][] dirMatrix = new Direction[][]{
             {UP_LEFT, UP, UP_RIGHT},
             {LEFT, UNDEFINED, RIGHT},
             {DOWN_LEFT, DOWN, DOWN_RIGHT}
     };
 
+    /**
+     * Creates new Player in the world.
+     *
+     * @param application main app class
+     * @param world       world to create player in
+     */
     public Player(Application application, World world) {
         super(application, world);
         initialize(EntityType.PLAYER);
@@ -91,17 +100,17 @@ public class Player extends ActiveEntity {
         }
 
         if (i == 1 && j == 1) {
-            state = STOPPED;
+            setState(STOPPED);
             return;
         }
 
-        state = MOVING;
+        setState(MOVING);
         direction = dirMatrix[j][i];
     }
 
     @Override
     public void updatePosition(float delta) {
-        if (state != MOVING) {
+        if (getState() != MOVING) {
             body.setLinearVelocity(0, 0);
             return;
         }

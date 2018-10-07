@@ -5,13 +5,16 @@ import com.badlogic.gdx.Gdx;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * A map that holds properties of any entity. Strongly considered for refactoring.
+ */
 public final class EntityPropertiesMap {
 
     public enum EntityProperties {
         WIDTH, HEIGHT, SPEED
     }
 
-    private static Map<EntityType, Properties> properties = new HashMap<EntityType, Properties>();
+    private static Map<EntityType, Properties> properties = new HashMap<>();
 
     static {
         init();
