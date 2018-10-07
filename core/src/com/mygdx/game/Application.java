@@ -56,8 +56,8 @@ public class Application extends Game {
     public void dispose() {
         super.dispose();
         batch.dispose();
-        assets.dispose();
         screenManager.dispose();
+        assets.dispose();
     }
 
 }

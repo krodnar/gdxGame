@@ -22,6 +22,12 @@ public class PlayerView extends ActiveEntityView<Player> {
     }
 
     @Override
+    public void initialize(Player entity) {
+        super.initialize(entity);
+        setYOffset(10);
+    }
+
+    @Override
     protected void buildAnimations(Player entity) {
         AtlasUtils.AnimationParameters parameters = new AtlasUtils.AnimationParameters();
         parameters.frameDuration = 0.05f;

@@ -92,6 +92,11 @@ public class Assets implements Disposable {
         return manager.get(assetDescriptor);
     }
 
+    /**
+     * Unloads resource from memory and all its dependencies.
+     *
+     * @param assetDescriptor descriptor of asset
+     */
     public void unload(AssetDescriptor assetDescriptor) {
         manager.unload(assetDescriptor.fileName);
     }

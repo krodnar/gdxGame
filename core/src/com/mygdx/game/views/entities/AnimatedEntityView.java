@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.ObjectMap;
 import com.mygdx.game.Application;
 import com.mygdx.game.entities.StatefulEntity;
+import com.mygdx.game.utils.Constants;
 
 /**
  * An animated view for the entity.
@@ -15,7 +16,7 @@ public abstract class AnimatedEntityView<T extends StatefulEntity> extends State
 
     protected ObjectMap<Integer, Animation<Sprite>> animations;
 
-    private float frameDuration = 0.05f;
+    private float frameDuration = Constants.DEFAULT_FRAME_DURATION;
     private Animation.PlayMode playMode = Animation.PlayMode.LOOP;
 
     /**

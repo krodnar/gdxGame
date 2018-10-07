@@ -116,7 +116,7 @@ public class AtlasUtils {
     public static class AnimationParameters {
 
         public String regionPrefix = "";
-        public float frameDuration = 0.05f;
+        public float frameDuration = Constants.DEFAULT_FRAME_DURATION;
         public Animation.PlayMode playMode = Animation.PlayMode.LOOP;
 
         public AnimationParameters() {
