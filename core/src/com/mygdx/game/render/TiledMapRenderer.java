@@ -126,16 +126,19 @@ public class TiledMapRenderer extends BatchTiledMapRenderer {
      */
     @Override
     public void render() {
-        MapLayer background = map.getLayers().get(backLayerIndex);
-        MapLayer foreground = map.getLayers().get(foreLayerIndex);
-        Array<TiledMapTileLayer> middleground = getMidLayers();
+        MapLayer backLayer = map.getLayers().get(backLayerIndex);
+        MapLayer foreLayer = map.getLayers().get(foreLayerIndex);
+        MapLayer midLayer = map.getLayers().get(midLayerIndex);
+        Array<TiledMapTileLayer> midLayers = getTileLayers(midLayer);
 
         beginRender();
-        renderMapLayer(background);
-        if (entityViewsManager == null || entityViewsManager.isEmpty()) {
-            renderLayersAndViews(middleground);
+        renderMapLayer(backLayer);
+        if (entityViewsManager != null && !entityViewsManager.isEmpty()) {
+            renderLayersAndViews(midLayers);
+        } else {
+            renderMapLayer(midLayer);
         }
-        renderMapLayer(foreground);
+        renderMapLayer(foreLayer);
         endRender();
     }
 
@@ -177,7 +180,8 @@ public class TiledMapRenderer extends BatchTiledMapRenderer {
             return;
         }
 
-        Array<TiledMapTileLayer> tileLayers = getMidLayers();
+        MapLayer midLayer = map.getLayers().get(midLayerIndex);
+        Array<TiledMapTileLayer> tileLayers = getTileLayers(midLayer);
 
         beginRender();
         renderLayersAndViews(tileLayers);
@@ -424,8 +428,7 @@ public class TiledMapRenderer extends BatchTiledMapRenderer {
     /**
      * @return mid layers
      */
-    private Array<TiledMapTileLayer> getMidLayers() {
-        MapLayer layer = map.getLayers().get(midLayerIndex);
+    private Array<TiledMapTileLayer> getTileLayers(MapLayer layer) {
         return getTileLayers(layer, new Array<TiledMapTileLayer>());
     }
 
