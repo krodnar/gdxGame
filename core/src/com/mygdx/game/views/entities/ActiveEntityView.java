@@ -15,7 +15,7 @@ import com.mygdx.game.utils.Direction;
  */
 public abstract class ActiveEntityView<T extends ActiveEntity> extends StatefulEntityView<T> {
 
-    private IntMap<Animation<Sprite>> animations = new IntMap<>();
+    private IntMap<Animation<Sprite>> animations;
 
     /**
      * Creates a new ActiveEntityView and initializes it.
@@ -30,6 +30,7 @@ public abstract class ActiveEntityView<T extends ActiveEntity> extends StatefulE
     @Override
     public void initialize(T entity) {
         super.initialize(entity);
+        animations = new IntMap<>();
         buildAnimations(entity);
     }
 
