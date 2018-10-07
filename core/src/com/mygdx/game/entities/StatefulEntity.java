@@ -5,14 +5,27 @@ import com.mygdx.game.Application;
 
 public abstract class StatefulEntity extends B2DEntity {
 
-    protected int state;
+    private int state;
+    private float stateTime;
 
     public StatefulEntity(Application app, World world) {
         super(app, world);
     }
 
+    @Override
+    public void update(float delta) {
+        stateTime += delta;
+    }
+
     public void setState(int state) {
-        this.state = state;
+        if (this.state != state) {
+            this.state = state;
+            stateTime = 0;
+        }
+    }
+
+    public float getStateTime() {
+        return stateTime;
     }
 
     public int getState() {
