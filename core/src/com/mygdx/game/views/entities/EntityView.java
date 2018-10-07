@@ -55,27 +55,27 @@ public interface EntityView<T extends Entity> extends Disposable {
     T getEntity();
 
     /**
-     * @return width of the entity
+     * @return width of the entity sprite
      */
     float getWidth();
 
     /**
-     * @return height of the entity
+     * @return height of the entity sprite
      */
     float getHeight();
 
     /**
-     * @return coordinates of the entity
+     * @return coordinates of the entity in game world
      */
     Vector2 getCoordinates();
 
     /**
-     * @return x coordinate of the entity
+     * @return x coordinate of the entity on a screen
      */
     float getX();
 
     /**
-     * @return y coordinate of the entity
+     * @return y coordinate of the entity on a screen
      */
     float getY();
 }

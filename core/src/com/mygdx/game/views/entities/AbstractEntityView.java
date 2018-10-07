@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.Application;
 import com.mygdx.game.entities.Entity;
 import com.mygdx.game.render.IGameRenderer;
+import com.mygdx.game.utils.Constants;
 
 import static com.mygdx.game.utils.Constants.PPM;
 
@@ -24,6 +25,8 @@ public abstract class AbstractEntityView<T extends Entity> implements EntityView
 
     protected float xOffset;
     protected float yOffset;
+
+    private final Rectangle area = new Rectangle();
 
     /**
      * Creates an AbstractEntityView and initializes it for specified entity.
@@ -78,12 +81,13 @@ public abstract class AbstractEntityView<T extends Entity> implements EntityView
 
     @Override
     public Rectangle getArea() {
-        return entity.getArea();
+        area.set(getX() + getXOffset(), getY() + getYOffset(), getWidth(), getHeight());
+        return area;
     }
 
     @Override
     public Rectangle getDrawingArea() {
-        return entity.getArea();
+        return getArea();
     }
 
     @Override
@@ -98,12 +102,20 @@ public abstract class AbstractEntityView<T extends Entity> implements EntityView
 
     @Override
     public float getWidth() {
-        return sprite.getWidth();
+        if (sprite != null ){
+            return sprite.getWidth();
+        }
+
+        return Constants.PPM;
     }
 
     @Override
     public float getHeight() {
-        return sprite.getHeight();
+        if (sprite != null ){
+            return sprite.getHeight();
+        }
+
+        return Constants.PPM;
     }
 
     @Override
