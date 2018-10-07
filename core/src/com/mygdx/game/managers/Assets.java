@@ -92,6 +92,10 @@ public class Assets implements Disposable {
         return manager.get(assetDescriptor);
     }
 
+    public void unload(AssetDescriptor assetDescriptor) {
+        manager.unload(assetDescriptor.fileName);
+    }
+
     @Override
     public void dispose() {
         manager.dispose();

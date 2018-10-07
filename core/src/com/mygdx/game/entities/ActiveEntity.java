@@ -35,6 +35,7 @@ public abstract class ActiveEntity extends StatefulEntity {
 
     @Override
     public void update(float delta) {
+        super.update(delta);
         updateDirection(delta);
         updateSpeed(delta);
         updatePosition(delta);

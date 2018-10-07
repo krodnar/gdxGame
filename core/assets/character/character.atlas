@@ -34,11 +34,11 @@ running_down
   index: 4
 running_down_left
   rotate: false
-  xy: 74, 2
+  xy: 770, 2
   size: 22, 32
   orig: 22, 32
   offset: 0, 0
-  index: 4
+  index: 3
 running_down_left
   rotate: false
   xy: 794, 2
@@ -55,14 +55,14 @@ running_down_left
   index: 2
 running_down_left
   rotate: false
-  xy: 842, 2
+  xy: 866, 2
   size: 22, 32
   orig: 22, 32
   offset: 0, 0
-  index: 3
+  index: 4
 running_down_right
   rotate: false
-  xy: 26, 2
+  xy: 674, 2
   size: 22, 32
   orig: 22, 32
   offset: 0, 0
@@ -160,18 +160,18 @@ running_up
   index: 2
 running_up
   rotate: false
-  xy: 458, 2
-  size: 22, 32
-  orig: 22, 32
-  offset: 0, 0
-  index: 3
-running_up
-  rotate: false
-  xy: 626, 2
+  xy: 74, 2
   size: 22, 32
   orig: 22, 32
   offset: 0, 0
   index: 1
+running_up
+  rotate: false
+  xy: 482, 2
+  size: 22, 32
+  orig: 22, 32
+  offset: 0, 0
+  index: 3
 running_up_left
   rotate: false
   xy: 362, 2
@@ -202,49 +202,49 @@ running_up_left
   index: 3
 running_up_right
   rotate: false
-  xy: 170, 2
+  xy: 530, 2
   size: 22, 32
   orig: 22, 32
   offset: 0, 0
   index: 1
 running_up_right
   rotate: false
-  xy: 530, 2
+  xy: 554, 2
   size: 22, 32
   orig: 22, 32
   offset: 0, 0
   index: 2
 running_up_right
   rotate: false
-  xy: 554, 2
+  xy: 578, 2
   size: 22, 32
   orig: 22, 32
   offset: 0, 0
   index: 3
 running_up_right
   rotate: false
-  xy: 578, 2
+  xy: 602, 2
   size: 22, 32
   orig: 22, 32
   offset: 0, 0
   index: 4
 standing_down
   rotate: false
-  xy: 770, 2
+  xy: 458, 2
   size: 22, 32
   orig: 22, 32
   offset: 0, 0
   index: -1
-standing_down left
+standing_down_left
+  rotate: false
+  xy: 170, 2
+  size: 22, 32
+  orig: 22, 32
+  offset: 0, 0
+  index: -1
+standing_down_right
   rotate: false
   xy: 194, 2
-  size: 22, 32
-  orig: 22, 32
-  offset: 0, 0
-  index: -1
-standing_down right
-  rotate: false
-  xy: 674, 2
   size: 22, 32
   orig: 22, 32
   offset: 0, 0
@@ -258,28 +258,28 @@ standing_left
   index: -1
 standing_right
   rotate: false
-  xy: 482, 2
+  xy: 506, 2
   size: 22, 32
   orig: 22, 32
   offset: 0, 0
   index: -1
 standing_up
   rotate: false
-  xy: 602, 2
+  xy: 626, 2
   size: 22, 32
   orig: 22, 32
   offset: 0, 0
   index: -1
-standing_up left
+standing_up_left
   rotate: false
-  xy: 866, 2
+  xy: 842, 2
   size: 22, 32
   orig: 22, 32
   offset: 0, 0
   index: -1
-standing_up right
+standing_up_right
   rotate: false
-  xy: 506, 2
+  xy: 26, 2
   size: 22, 32
   orig: 22, 32
   offset: 0, 0

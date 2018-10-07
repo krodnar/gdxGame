@@ -100,17 +100,17 @@ public class Player extends ActiveEntity {
         }
 
         if (i == 1 && j == 1) {
-            state = STOPPED;
+            setState(STOPPED);
             return;
         }
 
-        state = MOVING;
+        setState(MOVING);
         direction = dirMatrix[j][i];
     }
 
     @Override
     public void updatePosition(float delta) {
-        if (state != MOVING) {
+        if (getState() != MOVING) {
             body.setLinearVelocity(0, 0);
             return;
         }
